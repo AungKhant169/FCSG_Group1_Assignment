@@ -1,0 +1,11 @@
+
+public class Warrior extends Player {
+
+	public Warrior() {
+		super(260, 40, 20, 30, 3);
+	}
+	
+	public String getName() {
+		return "Warrior";
+	}
+}
