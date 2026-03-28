@@ -8,7 +8,8 @@ public class ATKBoostEffect extends Buff {
 
     @Override
     public void apply(Combatant target) {
-        target.setAtk(target.getAtk() + boostAmount);
+    	// ** keeping baseAttack untouched and chaning to addOnAttack to keep it separated
+        target.setAddOnAttack(boostAmount);
         System.out.println(target.getName() + "'s ATK increased by " + boostAmount + "!");
     }
 

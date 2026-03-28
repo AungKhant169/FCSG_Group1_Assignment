@@ -10,6 +10,8 @@ public class Potion extends Item {
     public void use(Combatant user) {
         user.increaseHP(HEAL_AMOUNT);
         // increaseHP in Combatant should already ensure limit is not exceeded with the min(currentHP + heal, maxHP)
-        System.out.println(user.getName() + " used a Potion! HP restored by " + HEAL_AMOUNT + ".");
+        
+        // ** item shouldn't do print, it should be handled by UI
+        // System.out.println(user.getName() + " used a Potion! HP restored by " + HEAL_AMOUNT + ".");
     }
 }
