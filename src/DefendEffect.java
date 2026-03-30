@@ -1,3 +1,4 @@
+
 public class DefendEffect extends Buff {
     private int damageReduction;
 
@@ -8,13 +9,16 @@ public class DefendEffect extends Buff {
 
     @Override
     public void apply(Combatant target) {
-        target.setDamageReduction(damageReduction);
-        System.out.println(target.getName() + " takes a defensive stance! Damage reduced by " + damageReduction + "!");
+        target.setAddOnDefense(target.getAddOnDefense() + damageReduction);
+
+        System.out.println(target.getName() + 
+            " takes a defensive stance! Damage reduced by " + damageReduction + "!");
     }
 
     @Override
     public void remove(Combatant target) {
-        target.setDamageReduction(0);
+        target.setAddOnDefense(target.getAddOnDefense() - damageReduction);
+
         System.out.println(target.getName() + "'s defensive stance ends!");
     }
 }
