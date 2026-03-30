@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class LevelOne extends Level {
-    public LevelOne() {
+public class LevelEasy extends Level {
+    public LevelEasy() {
         List<Enemy> initialList = new ArrayList<>();
         initialList.add(new Goblin());
         initialList.add(new Goblin());

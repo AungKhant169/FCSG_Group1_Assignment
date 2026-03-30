@@ -6,7 +6,7 @@ public class BattleEngine {
     // manages rounds
     // check win or lose
 
-    public BattleEngine(Player player, Level level) {
+    public BattleEngine(Combatant player, Level level) {
         
     }
     

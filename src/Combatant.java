@@ -29,7 +29,6 @@ public class Combatant {
 		this.items = new ArrayList<>();
 	}
 
-	// might need to remove some getters and setters
 	public int getMaxHp() {
 		return maxHp;
 	}
