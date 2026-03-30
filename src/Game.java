@@ -5,15 +5,17 @@ public class Game {
 //    private BattleEngine battleManager;
 	private UI ui;
 
-	public Game(UI ui) {
-		this.ui = ui;
+	public Game() {
+		this.ui = new CommandLineUI();
 	}
 
 	public void start() {
+		boolean isLevelWon;
 		ui.displayWelcome();
 		Combatant player = initPlayer();
 		Level level = initLevel();
-		BattleEngine be = new BattleEngine(player, level);
+		BattleEngine be = new BattleEngine(ui);
+		isLevelWon = be.run(player, level);
 	}
 
 	public Combatant initPlayer() {

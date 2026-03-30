@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class TurnManager {	
+public class TurnOrder {	
 	private UI ui;
 	
-	public TurnManager(UI ui) {
+	public TurnOrder(UI ui) {
 		this.ui = ui;
 	}
 	

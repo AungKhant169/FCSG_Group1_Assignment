@@ -16,11 +16,12 @@ public class Combatant {
 
 	public Combatant(int maxHp, int baseAttack, int baseDefense, int baseSpeed, String name, int specialSkillCooldown,
 			int currentCooldown) {
-		super();
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
 		this.baseAttack = baseAttack;
+		this.addOnAttack = 0;
 		this.baseDefense = baseDefense;
+		this.addOnDefense = 0;
 		this.baseSpeed = baseSpeed;
 		this.name = name;
 		this.specialSkillCooldown = specialSkillCooldown;
@@ -130,7 +131,7 @@ public class Combatant {
 	public int getAddOnDefense() {
 		return addOnDefense;
 	}
-	
+
 	public void setAddOnDefense(int value) {
 		this.addOnDefense = value;
 	}
@@ -142,15 +143,15 @@ public class Combatant {
 	public void setAddOnAttack(int value) {
 		this.addOnAttack = value;
 	}
-	
+
 	public void addItem(Item item) {
 		items.add(item);
 	}
-	
+
 	public boolean isSkillReady() {
 		return (currentCooldown == 0);
 	}
-	
+
 	public boolean hasItems() {
 		return (items.size() > 0);
 	}

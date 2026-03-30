@@ -1,25 +1,23 @@
+import java.util.ArrayList;
+
 public class BattleEngine {
-	// battle manager doesn't own enemy, should get this info from level
-    private Enemy enemies;
-//    private turnOrder;
-    
-    // manages rounds
-    // check win or lose
-
-    public BattleEngine(Combatant player, Level level) {
-        
+	TurnOrder to;
+	UI ui;
+    public BattleEngine(UI ui) {
+    	this.ui = ui;
+        to = new TurnOrder(ui);
     }
     
-//    public getTurnOrder() {
-//    	
-//    }
-    
-    public void runRound() {
-
+    public boolean run(Combatant player, Level level) {
+    	return true;
     }
     
-    // not sure if we need this here
-    public void getAliveEnemy() {
-
+    public void runRound(Combatant player, ArrayList<Combatant> enemies) {
+    	
     }
+    
+    public void executeTurn(Combatant c) {
+    	
+    }
+
 }
