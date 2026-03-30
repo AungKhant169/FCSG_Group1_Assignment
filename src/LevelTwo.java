@@ -12,12 +12,4 @@ public class LevelTwo extends Level {
         backupList.add(new Wolf());
         setBackupWave(backupList);
     }
-
-    public List<Enemy> loadInitialWave() {
-        return getInitialWave();
-    }
-
-    public List<Enemy> loadBackupWave() {
-        return getBackupWave();
-    }
 }

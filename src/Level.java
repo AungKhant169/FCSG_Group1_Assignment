@@ -4,9 +4,6 @@ public abstract class Level {
     private List<Enemy> initialWave;
     private List<Enemy> backupWave;
 
-    public abstract List<Enemy> loadInitialWave();
-    public abstract List<Enemy> loadBackupWave();
-
     public List<Enemy> getInitialWave() {
         return initialWave;
     }

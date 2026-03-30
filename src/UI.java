@@ -163,7 +163,7 @@ public class UI {
 
     // ========== TURN ORDER ==========
 
-    public void displayTurnOrder(List<Combatant> order) {
+    public static void displayTurnOrder(List<Combatant> order) {
         System.out.print(CYAN + "  Turn Order: " + RESET);
         for (int i = 0; i < order.size(); i++) {
             System.out.print(BOLD + order.get(i).getName() + RESET);

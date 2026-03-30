@@ -9,12 +9,4 @@ public class LevelOne extends Level {
         initialList.add(new Goblin());
         setInitialWave(initialList);
     }
-
-    public List<Enemy> loadInitialWave() {
-        return getInitialWave();
-    }
-
-    public List<Enemy> loadBackupWave() {
-        return getBackupWave();
-    }
 }
