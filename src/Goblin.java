@@ -2,7 +2,7 @@
 public class Goblin extends Enemy {
 
 	public Goblin() {
-		super(55, 35, 15, 25);
+		super(55, 35, 15, 25, "Goblin");
 	}
 
 }

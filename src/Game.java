@@ -1,7 +1,7 @@
 public class Game {
-    private Player player;
-    private Level level;
-    private int roundCount;
+//    private Player player;
+//    private Level level;
+//    private int roundCount;
     private BattleManager battleManager;
 
     public Game() {
@@ -10,6 +10,7 @@ public class Game {
 
     public void start() {
     	// ask user for player
+    	// Player p1 = input();
     	// ask user for level
     	// create user
     	// create level

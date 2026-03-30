@@ -7,9 +7,12 @@ public class Combatant {
 	private int baseDefense;
 	private int addOnDefense;
 	private int baseSpeed;
+	private String name;
+	private int specialSkillCooldown;
+	private int currentCooldown;
 	private ArrayList<StatusEffect> statusEffect;
 	
-	public Combatant(int maxHp, int baseAttack, int baseDefense, int baseSpeed) {
+	public Combatant(int maxHp, int baseAttack, int baseDefense, int baseSpeed, String name, int specialSkillCooldown, int currentCooldown) {
 		super();
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
@@ -17,6 +20,9 @@ public class Combatant {
 		this.baseDefense = baseDefense;
 		this.baseSpeed = baseSpeed;
 		this.statusEffect = new ArrayList<>();
+		this.name = name;
+		this.specialSkillCooldown = specialSkillCooldown;
+		this.currentCooldown = currentCooldown;
 	}
 
 	// might need to remove some getters and setters
@@ -73,7 +79,7 @@ public class Combatant {
 	}
 
 	public Boolean isAlive() {
-		return (currentHp == 0);
+		return (currentHp > 0);
 	}
 
 	public void addStatusEffect(StatusEffect status) {
@@ -100,7 +106,25 @@ public class Combatant {
 			}
 		}
 	}
-
+	
+	public String getName() {
+		return name;
+	}
+	public int getSpecialSkillCooldown() {
+		return specialSkillCooldown;
+	}
+	
+	public int getCurrentCooldown() {
+		return currentCooldown;
+	}
+	
+	public void setCurrentCooldown() {
+		currentCooldown = specialSkillCooldown;
+	}
+	
+	public void reduceCurrentCooldown() {
+		currentCooldown -= 1;
+	}
 	// inside action class
 	// keep the logic of the special attack inside action
 //	if (user instanceof Warrior):
