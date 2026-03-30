@@ -3,7 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CommandLineUI implements UI{
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+    
+    public CommandLineUI() {
+    	this.scanner = new Scanner(System.in);
+    }
 
     // ========== COLORS ==========
     public static final String RESET   = "\u001B[0m";

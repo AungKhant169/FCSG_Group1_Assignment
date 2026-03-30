@@ -2,9 +2,13 @@ public class Game {
 //    private Player player;
 //    private Level level;
 //    private int roundCount;
-    private BattleEngine battleManager;
-
+//    private BattleEngine battleManager;
+	private UI ui;
+	public Game(UI ui) {
+		this.ui = ui;
+	}
     public void start() {
+    	ui.displayWelcome();
     	// ask user for player
     	// Player p1 = input();
     	// ask user for level
