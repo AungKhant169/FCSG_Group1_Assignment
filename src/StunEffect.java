@@ -6,13 +6,14 @@ public class StunEffect extends Debuff {
 
     @Override
     public void apply(Combatant target) {
-        target.setStunned(true);
+//        target.setStunned(true);
+    	// ui.print();
         System.out.println(target.getName() + " is STUNNED for 2 turns!");
     }
 
     @Override
     public void remove(Combatant target) {
-        target.setStunned(false);
+//        target.setStunned(false);
         System.out.println(target.getName() + "'s stun has worn off!");
     }
 }

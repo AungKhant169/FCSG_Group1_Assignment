@@ -7,7 +7,7 @@ public class SmokeBomb extends Item {
     @Override
     public void use(Combatant user) {
         // Apply SmokeBombInvulnerability status effect to the user for 2 turns
-        user.addStatusEffect(new SmokeBombInvulnerability(2));
+        user.addStatusEffect(new SmokeBombInvulnerability());
         System.out.println(user.getName() + " Enemy attacks deal 0 damage this turn + next");
     }
 }

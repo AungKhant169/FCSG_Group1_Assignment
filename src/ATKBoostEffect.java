@@ -11,8 +11,8 @@ public class ATKBoostEffect extends Buff {
     public void apply(Combatant target) {
         target.setAddOnAttack(target.getAddOnAttack() + boostAmount);
 
-       ui.println(target.getName() + 
-            "'s ATK increased by " + boostAmount + "!");
+//       UI.print(target.getName() + 
+//            "'s ATK increased by " + boostAmount + "!");
     }
 
     @Override

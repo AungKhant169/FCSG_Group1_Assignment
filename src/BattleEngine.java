@@ -1,4 +1,4 @@
-public class BattleManager {
+public class BattleEngine {
 	// battle manager doesn't own enemy, should get this info from level
     private Enemy enemies;
 //    private turnOrder;
@@ -6,7 +6,7 @@ public class BattleManager {
     // manages rounds
     // check win or lose
 
-    public BattleManager(Player player, Level level) {
+    public BattleEngine(Player player, Level level) {
         
     }
     

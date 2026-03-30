@@ -2,19 +2,16 @@ public class Game {
 //    private Player player;
 //    private Level level;
 //    private int roundCount;
-    private BattleManager battleManager;
-
-    public Game() {
-
-    }
+    private BattleEngine battleManager;
 
     public void start() {
     	// ask user for player
     	// Player p1 = input();
     	// ask user for level
+    	// Level = input();
     	// create user
     	// create level
-        battleManager = new BattleManager(player, level);
+//        battleManager = new BattleEngine(player, level);
         // get game state (win or lose of the chosen level)
     }
 
