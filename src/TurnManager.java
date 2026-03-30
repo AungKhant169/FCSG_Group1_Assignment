@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class TurnManager {	
+	UI cliUI = new CommandLineUI();
+	
 	public ArrayList<Combatant> getTurnsBasedOnSpeed(ArrayList<Combatant> c) {
 		// sort the list based on speed and return
 		int len = c.size();
@@ -33,7 +35,7 @@ public class TurnManager {
                 uniqueList.add(combatant);
             }
         }
-		UI.displayTurnOrder(uniqueList);
+		cliUI.displayTurnOrder(uniqueList);
 	}
 }
 

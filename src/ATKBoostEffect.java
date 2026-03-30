@@ -6,19 +6,9 @@ public class ATKBoostEffect extends Buff {
         super("ATK Boost", -1); // permanent
         this.boostAmount = boostAmount;
     }
-
-    @Override
-    public void apply(Combatant target) {
-        target.setAddOnAttack(target.getAddOnAttack() + boostAmount);
-
-//       UI.print(target.getName() + 
-//            "'s ATK increased by " + boostAmount + "!");
-    }
-
-    @Override
-    public void remove(Combatant target) {
-        // If you EVER make it non-permanent, this must work correctly
-        target.setAddOnAttack(target.getAddOnAttack() - boostAmount);
+    
+    public void modifyAttack(Combatant combatant) {
+    	combatant.setAddOnAttack(combatant.getAddOnAttack()+boostAmount);
     }
 
     @Override

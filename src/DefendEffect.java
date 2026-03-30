@@ -6,19 +6,8 @@ public class DefendEffect extends Buff {
         super("Defend", 1); // lasts 1 turn
         this.damageReduction = damageReduction;
     }
-
-    @Override
-    public void apply(Combatant target) {
-        target.setAddOnDefense(target.getAddOnDefense() + damageReduction);
-
-        System.out.println(target.getName() + 
-            " takes a defensive stance! Damage reduced by " + damageReduction + "!");
-    }
-
-    @Override
-    public void remove(Combatant target) {
-        target.setAddOnDefense(target.getAddOnDefense() - damageReduction);
-
-        System.out.println(target.getName() + "'s defensive stance ends!");
+    
+    public void modifyDefense(Combatant combatant) {
+    	combatant.setAddOnDefense(combatant.getAddOnDefense()+damageReduction);
     }
 }

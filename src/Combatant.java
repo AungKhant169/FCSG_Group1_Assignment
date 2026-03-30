@@ -71,7 +71,7 @@ public class Combatant {
 		currentHp = (healedHp >= maxHp) ? maxHp : healedHp;
 	}
 
-	public Boolean isAlive() {
+	public boolean isAlive() {
 		return (currentHp > 0);
 	}
 
@@ -148,11 +148,11 @@ public class Combatant {
 		items.add(item);
 	}
 	
-	public Boolean isSkillReady() {
+	public boolean isSkillReady() {
 		return (currentCooldown == 0);
 	}
 	
-	public Boolean hasItems() {
+	public boolean hasItems() {
 		return (items.size() > 0);
 	}
 }
