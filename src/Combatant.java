@@ -133,4 +133,12 @@ public class Combatant {
 //	if (user instanceof Wizard):
 //	    target.takeDamage(user.attack)
 //	    target.addStatusEffect(new BurnEffect())
+
+public int getAddOnDefense() {
+    return addOnDefense;
+}
+
+public void setAddOnDefense(int value) {
+    this.addOnDefense = value;
+}
 }
