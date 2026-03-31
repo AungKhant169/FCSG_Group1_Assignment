@@ -32,7 +32,7 @@ public class CommandLineUI implements UI{
         System.out.println(CYAN + "╚══════════════════════════════════════════════════╝" + RESET);
     }
 
-    private void printLine(String text) {
+    public void printLine(String text) {
         System.out.println(CYAN + "║  " + RESET + text);
     }
 

@@ -29,5 +29,7 @@ public interface UI {
 	public void displayVictory();
 	
 	public void displayDefeat();
+	
+	public void printLine(String text);
 
 }

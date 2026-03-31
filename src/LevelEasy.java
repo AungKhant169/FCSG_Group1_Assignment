@@ -8,5 +8,6 @@ public class LevelEasy extends Level {
         initialList.add(new Goblin());
         initialList.add(new Goblin());
         setInitialWave(initialList);
+        setBackupWave(new ArrayList<>());
     }
 }

@@ -13,7 +13,7 @@ public class TurnOrder {
 		ArrayList<Combatant> turnOrder = new ArrayList<>(c);
 		for (int i = 0; i < len - 1; i++) {
             for (int j = 0; j < len - i - 1; j++) {
-                if (turnOrder.get(j).getBaseSpeed() > turnOrder.get(j + 1).getBaseSpeed()) {
+                if (turnOrder.get(j).getBaseSpeed() < turnOrder.get(j + 1).getBaseSpeed()) {
 					Combatant temp = turnOrder.get(j);
 					turnOrder.set(j, turnOrder.get(j + 1));
 					turnOrder.set(j + 1, temp);
@@ -28,9 +28,9 @@ public class TurnOrder {
 		ArrayList<Combatant> uniqueList = new ArrayList<>();
 		for (Combatant combatant : turnOrder) {
             boolean duplicate = false;
-			Class<?> combatantClassName = combatant.getClass();
+			String combatantName = combatant.getName();
             for (Combatant unique : uniqueList) {
-                if (unique.getClass().equals(combatantClassName)) {
+                if (unique.getName().equals(combatantName)) {
                     duplicate = true;
                     break;
                 }
