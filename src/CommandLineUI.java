@@ -22,6 +22,12 @@ public class CommandLineUI implements UI{
     public static final String RED_BG  = "\u001B[41m";
     public static final String GREEN_BG= "\u001B[42m";
 
+    //INVALID INPUT
+    @Override
+    public void invalidInput(String message) {
+        System.out.println(RED + "⚠ " + message + RESET);
+    }
+
     // ========== HELPERS ==========
 
     private void printDivider() {
@@ -99,25 +105,36 @@ public class CommandLineUI implements UI{
     // ========== CLASS SELECT ==========
 
     public int selectClass() {
-        clearScreen();
-        printDivider();
-        System.out.println(CYAN + "║" + BOLD + YELLOW + "        ⚔  CHOOSE YOUR FIGHTER  ⚔         " + RESET + CYAN + "║" + RESET);
-        System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
-        System.out.println(CYAN + "║" + RESET);
-        System.out.println(CYAN + "║  " + BOLD + RED + "1. ⚔  WARRIOR" + RESET);
-        System.out.println(CYAN + "║" + RESET + "     HP: 260  ATK: 40  DEF: 20  SPD: 30");
-        System.out.println(CYAN + "║" + RESET + "     " + GREEN + "➤ Shield Bash" + RESET + " — Stuns enemy for 2 turns");
-        System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but UNSTOPPABLE\"" + RESET);
-        System.out.println(CYAN + "║" + RESET);
-        System.out.println(CYAN + "║  " + BOLD + PURPLE + "2. 🧙 WIZARD" + RESET);
-        System.out.println(CYAN + "║" + RESET + "     HP: 200  ATK: 50  DEF: 10  SPD: 20");
-        System.out.println(CYAN + "║" + RESET + "     " + GREEN + "➤ Arcane Blast" + RESET + " — Hits ALL enemies, +10 ATK per kill");
-        System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Fragile but DEVASTATING\"" + RESET);
-        System.out.println(CYAN + "║" + RESET);
-        printDividerBottom();
-        System.out.print(BOLD + "  Your choice (1-2): " + RESET);
-        return scanner.nextInt();
+        while (true) {
+            clearScreen();
+            printDivider();
+            System.out.println(CYAN + "║" + BOLD + YELLOW + "        ⚔  CHOOSE YOUR FIGHTER  ⚔         " + RESET + CYAN + "║" + RESET);
+            System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
+            System.out.println(CYAN + "║" + RESET);
+            System.out.println(CYAN + "║  " + BOLD + RED + "1. ⚔  WARRIOR" + RESET);
+            System.out.println(CYAN + "║" + RESET + "     HP: 260  ATK: 40  DEF: 20  SPD: 30");
+            System.out.println(CYAN + "║" + RESET + "     " + GREEN + "➤ Shield Bash" + RESET + " — Stuns enemy for 2 turns");
+            System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but UNSTOPPABLE\"" + RESET);
+            System.out.println(CYAN + "║" + RESET);
+            System.out.println(CYAN + "║  " + BOLD + PURPLE + "2. 🧙 WIZARD" + RESET);
+            System.out.println(CYAN + "║" + RESET + "     HP: 200  ATK: 50  DEF: 10  SPD: 20");
+            System.out.println(CYAN + "║" + RESET + "     " + GREEN + "➤ Arcane Blast" + RESET + " — Hits ALL enemies, +10 ATK per kill");
+            System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Fragile but DEVASTATING\"" + RESET);
+            System.out.println(CYAN + "║" + RESET);
+            printDividerBottom();
+            System.out.print(BOLD + "  Your choice (1-2): " + RESET);
+
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                if (choice == 1 || choice == 2) return choice;
+            } else {
+                scanner.next();
+            }
+
+            invalidInput("Invalid input! Enter 1 or 2.");
+        }
     }
+
 
     // ========== ITEM SELECT ==========
 
@@ -136,27 +153,67 @@ public class CommandLineUI implements UI{
 
         List<Integer> items = new ArrayList<>();
         for (int i = 1; i <= 2; i++) {
-            System.out.print(BOLD + "  Select for Item " + i + " (1-3): " + RESET);
-            items.add(scanner.nextInt());
+            while (true) {
+                System.out.print(BOLD + "  Select for Item " + i + " (1-3): " + RESET);
+
+                if (scanner.hasNextInt()) {
+                    int choice = scanner.nextInt();
+                    if (choice >= 1 && choice <= 3) {
+                        items.add(choice);
+                        break;
+                    }
+                } else {
+                    scanner.next();
+                }
+
+                invalidInput("Invalid item! Enter 1-3.");
+            }
         }
         return items;
     }
 
+
     // ========== LEVEL SELECT ==========
 
     public int selectLevel() {
-        clearScreen();
-        printDivider();
-        System.out.println(CYAN + "║" + BOLD + YELLOW + "         🗺  SELECT DIFFICULTY  🗺          " + RESET + CYAN + "║" + RESET);
-        System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
-        System.out.println(CYAN + "║" + RESET + "  " + GREEN + BOLD + "1. 🟢 EASY  " + RESET + GREEN + "  — 3 Goblins. Good luck... maybe." + RESET);
-        System.out.println(CYAN + "║" + RESET + "  " + YELLOW + BOLD + "2. 🟡 MEDIUM" + RESET + YELLOW + "  — Goblin + Wolf + Backup wave 👀" + RESET);
-        System.out.println(CYAN + "║" + RESET + "  " + RED + BOLD + "3. 🔴 HARD  " + RESET + RED + "  — You will suffer. You will lose." + RESET);
-        System.out.println(CYAN + "║" + RESET);
-        printDividerBottom();
-        System.out.print(BOLD + "  Your choice (1-3): " + RESET);
-        return scanner.nextInt();
+        while (true) {
+            clearScreen();
+            printDivider();
+            System.out.println(CYAN + "║" + BOLD + YELLOW + "         🗺  SELECT DIFFICULTY  🗺          " + RESET + CYAN + "║" + RESET);
+            System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
+            System.out.println(CYAN + "║" + RESET + "  1. EASY");
+            System.out.println(CYAN + "║" + RESET + "  2. MEDIUM");
+            System.out.println(CYAN + "║" + RESET + "  3. HARD");
+            System.out.println(CYAN + "║" + RESET);
+            printDividerBottom();
+            System.out.print(BOLD + "  Your choice (1-3): " + RESET);
+
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                if (choice >= 1 && choice <= 3) return choice;
+            } else {
+                scanner.next();
+            }
+
+            invalidInput("Invalid level! Enter 1-3.");
+        }
     }
+
+    public int getPlayerAction() {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int action = scanner.nextInt();
+                if (action >= 1 && action <= 4) return action;
+            } else {
+                scanner.next();
+            }
+
+            invalidInput("Invalid action! Enter 1-4.");
+        }
+    }
+
+    
+
 
     // ========== ROUND START ==========
 
@@ -205,9 +262,9 @@ public class CommandLineUI implements UI{
         System.out.print(BOLD + "  Your move (1-4): " + RESET);
     }
 
-    public int getPlayerAction() {
-        return scanner.nextInt();
-    }
+    //public int getPlayerAction() {
+        //return scanner.nextInt();
+    //}
 
     // ========== ACTION RESULT ==========
 

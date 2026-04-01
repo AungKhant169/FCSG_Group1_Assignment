@@ -4,6 +4,8 @@ public interface UI {
 
 	public void displayWelcome();
 
+	public void invalidInput(String message);
+	
 	public int selectClass();
 
 	public List<Integer> selectItems();
