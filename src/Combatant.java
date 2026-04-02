@@ -150,4 +150,7 @@ public abstract class Combatant {
 		
 		return totalDef;
 	}
+	public List<Item> getItems() {
+		return items;
+	}
 }

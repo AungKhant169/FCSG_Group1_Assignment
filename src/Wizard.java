@@ -11,7 +11,7 @@ public class Wizard extends Player {
 
 	public void performAction(BattleContext bc) {
 		bc.getUI().displayActionMenu(this);
-		int action = bc.getUI().getPlayerAction();
+		int action = bc.getUI().getPlayerAction(this);
 		bc.getUI().displaySelectedAction(action);
 		if (action == 1) {
 			new BasicAttack().execute(this, bc.getEnemies().get(0), bc.getUI());

@@ -5,6 +5,6 @@ public class DefendAction implements Action{
 		StatusEffect def = new DefendEffect(10);
 		c.addStatusEffect(def);
 		String display = c.getName() + " -> Defend -> Def: " + c.getBaseDefense() + " -> " + c.getTotalDef();
-		ui.printLine(display);
+		ui.displayActionResult(display);
 	}
 }

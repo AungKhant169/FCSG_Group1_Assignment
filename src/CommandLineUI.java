@@ -234,7 +234,7 @@ public void displaySelectedItems(List<Integer> items) {
     sleep(600);
 }
 
-    public int getPlayerAction() {
+    public int getPlayerAction(Combatant c) {
     while (true) {
 
         if (scanner.hasNextInt()) {
@@ -244,7 +244,12 @@ public void displaySelectedItems(List<Integer> items) {
             scanner.nextLine(); // ✅ prevent input bugs later
 
             if (action >= 1 && action <= 4) {
-                return action;
+            	if ( action == 3 && !c.hasItems()) {
+            		invalidInput("You have no item to use! Please choose different action.");
+            		continue;
+            	} else {
+                    return action;
+            	}
             }
         } else {
             scanner.next(); // clear invalid input
@@ -399,5 +404,9 @@ public void displaySelectedAction(int action) {
         System.out.println(RED + "             💀  YOU HAVE BEEN DEFEATED...  💀" + RESET);
         System.out.println(YELLOW + "                  Better luck next time!" + RESET);
         System.out.println();
+    }
+    
+    public int getUseItem() {
+    	
     }
 }

@@ -24,7 +24,7 @@ public interface UI {
 
 	public void displayActionMenu(Combatant c);
 
-	public int getPlayerAction();
+	public int getPlayerAction(Combatant c);
 
 	public void displaySelectedAction(int action);
 
@@ -41,5 +41,6 @@ public interface UI {
 	public void displayDefeat();
 
 	public void printLine(String text);
-
+	
+	public int getUseItem();
 }
