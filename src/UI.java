@@ -42,5 +42,5 @@ public interface UI {
 
 	public void printLine(String text);
 	
-	public int getUseItem();
+	public int getUseItem(Combatant c);
 }

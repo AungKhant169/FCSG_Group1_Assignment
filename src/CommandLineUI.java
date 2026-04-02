@@ -43,7 +43,8 @@ public class CommandLineUI implements UI{
     }
 
     private void sleep(int ms) {
-        try { Thread.sleep(ms); } catch (InterruptedException e) {}
+//        try { Thread.sleep(ms); } catch (InterruptedException e) {}
+        try { Thread.sleep(0); } catch (InterruptedException e) {}
     }
 
     private void typeWrite(String text, int delayMs) {
@@ -406,7 +407,15 @@ public void displaySelectedAction(int action) {
         System.out.println();
     }
     
-    public int getUseItem() {
-    	
+    public int getUseItem(Combatant c) {
+
+        clearScreen();
+        printDivider();
+        System.out.println(CYAN + "║" + BOLD + YELLOW + "          🎒  CHOOSE ITEM TO USE  🎒          " + RESET + CYAN + "║" + RESET);
+        System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
+        for(Item i: c.getItems()) {
+        	System.out.println(i.getName());
+        }
+        return scanner.nextInt();
     }
 }

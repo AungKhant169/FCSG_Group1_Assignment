@@ -1,7 +1,7 @@
 public class SmokeBomb extends Item {
 
     public SmokeBomb() {
-        super("Smoke Bomb", "Enemy attacks deal 0 damage this turn + next");
+        super("💨 Smoke Bomb", "Enemy attacks deal 0 damage this turn + next");
     }
 
     @Override
