@@ -42,7 +42,6 @@ public class BattleEngine {
 			c.removeExpiredEffects();
 		}
 		ui.displayRoundSummary(orderedCombatant);
-		System.out.println("Player stat");
 		for (StatusEffect e : player.getStatusEffects()) {
 			System.out.println(e.getName() + " " + e.getDuration());
 
