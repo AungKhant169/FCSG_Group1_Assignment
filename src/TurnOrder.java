@@ -30,7 +30,7 @@ public class TurnOrder {
             boolean duplicate = false;
 			String combatantName = combatant.getSimpleName();
             for (Combatant unique : uniqueList) {
-                if (unique.getName().equals(combatantName)) {
+                if (unique.getSimpleName().equals(combatantName)) {
                     duplicate = true;
                     break;
                 }
