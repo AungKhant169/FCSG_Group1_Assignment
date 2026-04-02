@@ -286,7 +286,7 @@ public void displaySelectedAction(int action) {
     public void displayTurnOrder(List<Combatant> order) {
         System.out.print(CYAN + "  Turn Order: " + RESET);
         for (int i = 0; i < order.size(); i++) {
-            System.out.print(BOLD + order.get(i).getName() + RESET);
+            System.out.print(BOLD + order.get(i).getSimpleName() + RESET);
             if (i < order.size() - 1) System.out.print(RED + " ⟶ " + RESET);
         }
         System.out.println();
