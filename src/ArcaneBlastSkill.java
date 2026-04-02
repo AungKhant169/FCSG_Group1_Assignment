@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class ArcaneBlastEffect implements Action {
+public class ArcaneBlastSkill implements Action {
 
     @Override
     public void execute(Combatant wizard, List<Enemy> enemyList){

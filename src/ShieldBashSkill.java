@@ -1,4 +1,4 @@
-public class ShieldBashEffect implements Action {
+public class ShieldBashSkill implements Action {
 
     @Override
     public void execute(Combatant warrior, Combatant target) {
