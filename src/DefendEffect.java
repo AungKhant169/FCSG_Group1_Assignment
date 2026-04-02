@@ -1,13 +1,13 @@
 
 public class DefendEffect extends Buff {
-    private int damageReduction;
+    private int boostAmount;
 
-    public DefendEffect(int damageReduction) {
+    public DefendEffect(int boostAmount) {
         super("Defend", 1); // lasts 1 turn
-        this.damageReduction = damageReduction;
+        this.boostAmount = boostAmount;
     }
     
-    public void modifyDefense(Combatant combatant) {
-    	combatant.setAddOnDefense(combatant.getAddOnDefense()+damageReduction);
+    public int modifyDefense() {
+    	return boostAmount;
     }
 }

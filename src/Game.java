@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Game {
 //    private Player player;
 //    private Level level;
@@ -16,6 +18,7 @@ public class Game {
 		Level level = initLevel();
 		BattleEngine be = new BattleEngine(ui);
 		isLevelWon = be.run(player, level);
+		showResult(isLevelWon);
 	}
 
 	public Combatant initPlayer() {
@@ -26,12 +29,13 @@ public class Game {
 		// hence 1 for warrior and 2 for wizard,
 
 		// update on this function is needed if more player classes are added
-
+		ui.displaySelectedClass(playerClass);
 		if (playerClass == 1) {
 			player = new Warrior();
 		} else {
 			player = new Wizard();
 		}
+		initItem(player);
 		return player;
 
 	}
@@ -42,6 +46,7 @@ public class Game {
 		// assuming ui class return only the valid input
 
 		// similar idea with initPlayer()
+		ui.displaySelectedLevel(selectedLevel);
 		Level level;
 		if (selectedLevel == 1) {
 			level = new LevelEasy();
@@ -54,8 +59,27 @@ public class Game {
 		return level;
 	}
 
-	public void showResult() {
+	public void showResult(boolean isLevelWon) {
 
+		if (isLevelWon) {
+			ui.displayVictory();
+		} else {
+			ui.displayDefeat();
+		}
+	}
+	
+	public void initItem(Combatant c) {
+		List<Integer> items = ui.selectItems();
+		ui.displaySelectedItems(items);
+		for (int i: items) {
+			if (i == 1) {
+				c.addItem(new Potion());
+			} else if (i == 2) {
+				c.addItem(new SmokeBomb());
+			} else if (i == 3) {
+				c.addItem(new PowerStone());
+			} 
+		}
 	}
 
 }

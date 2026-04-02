@@ -1,29 +1,27 @@
 import java.util.*;
 
-public class Combatant {
+public abstract class Combatant {
 	private int maxHp;
 	private int currentHp;
 	private int baseAttack;
-	private int addOnAttack;
 	private int baseDefense;
-	private int addOnDefense;
 	private int baseSpeed;
 	private String name;
 	private int specialSkillCooldown;
 	private int currentCooldown;
 	private ArrayList<StatusEffect> statusEffects;
 	private ArrayList<Item> items;
+	private String simpleName;
 
-	public Combatant(int maxHp, int baseAttack, int baseDefense, int baseSpeed, String name, int specialSkillCooldown,
+	public Combatant(int maxHp, int baseAttack, int baseDefense, int baseSpeed, String name, String simpleName, int specialSkillCooldown,
 			int currentCooldown) {
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
 		this.baseAttack = baseAttack;
-		this.addOnAttack = 0;
 		this.baseDefense = baseDefense;
-		this.addOnDefense = 0;
 		this.baseSpeed = baseSpeed;
 		this.name = name;
+		this.simpleName = simpleName;
 		this.specialSkillCooldown = specialSkillCooldown;
 		this.currentCooldown = currentCooldown;
 		this.statusEffects = new ArrayList<>();
@@ -119,30 +117,6 @@ public class Combatant {
 	public void reduceCurrentCooldown() {
 		currentCooldown -= 1;
 	}
-	// inside action class
-	// keep the logic of the special attack inside action
-//	if (user instanceof Warrior):
-//	    target.takeDamage(user.attack * 2)
-//
-//	if (user instanceof Wizard):
-//	    target.takeDamage(user.attack)
-//	    target.addStatusEffect(new BurnEffect())
-
-	public int getAddOnDefense() {
-		return addOnDefense;
-	}
-
-	public void setAddOnDefense(int value) {
-		this.addOnDefense = value;
-	}
-
-	public int getAddOnAttack() {
-		return addOnAttack;
-	}
-
-	public void setAddOnAttack(int value) {
-		this.addOnAttack = value;
-	}
 
 	public void addItem(Item item) {
 		items.add(item);
@@ -154,5 +128,26 @@ public class Combatant {
 
 	public boolean hasItems() {
 		return (items.size() > 0);
+	}
+	public abstract void performAction(BattleContext bc);
+	
+	public String getSimpleName() {
+		return simpleName;
+	}
+	public int getTotalAttack() {
+		int totalAtk = baseAttack;
+		for (StatusEffect e: statusEffects) {
+			totalAtk += e.modifyAttack();
+		}
+		
+		return totalAtk;
+	}
+	public int getTotalDef() {
+		int totalDef = baseDefense;
+		for (StatusEffect e: statusEffects) {
+			totalDef += e.modifyDefense();
+		}
+		
+		return totalDef;
 	}
 }

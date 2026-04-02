@@ -29,10 +29,12 @@ public abstract class StatusEffect {
 		return duration;
 	}
 
-	public void modifyAttack(Combatant combatant) {
+	public int modifyAttack() {
+		return 0;
 	}
 
-	public void modifyDefense(Combatant combatant) {
+	public int modifyDefense() {
+		return 0;
 	};
 
 	public void modifySpeed(Combatant combatant) {
@@ -42,7 +44,9 @@ public abstract class StatusEffect {
 		;
 		return false;
 	};
-
+	public boolean blockInDamage() {
+		return false;
+	}
 	public int interactWithOutDamage(int damage) {
 		return damage;
 	};

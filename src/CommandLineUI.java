@@ -70,6 +70,7 @@ public class CommandLineUI implements UI{
         bar.append("]" + RESET);
         return bar.toString();
     }
+    
 
     // ========== CLEAR SCREEN ==========
 
@@ -126,6 +127,7 @@ public class CommandLineUI implements UI{
 
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
+                scanner.nextLine();
                 if (choice == 1 || choice == 2) return choice;
             } else {
                 scanner.next();
@@ -135,6 +137,13 @@ public class CommandLineUI implements UI{
         }
     }
 
+    public void displaySelectedClass(int choice) {
+    String className = (choice == 1) ? "⚔ WARRIOR" : "🧙 WIZARD";
+
+    System.out.println();
+    System.out.println(GREEN + BOLD + "  ✔ You selected: " + className + RESET);
+    sleep(600);
+}
 
     // ========== ITEM SELECT ==========
 
@@ -158,6 +167,7 @@ public class CommandLineUI implements UI{
 
                 if (scanner.hasNextInt()) {
                     int choice = scanner.nextInt();
+                    scanner.nextLine(); 
                     if (choice >= 1 && choice <= 3) {
                         items.add(choice);
                         break;
@@ -171,6 +181,22 @@ public class CommandLineUI implements UI{
         }
         return items;
     }
+
+public void displaySelectedItems(List<Integer> items) {
+    System.out.println();
+    System.out.println(GREEN + BOLD + "  ✔ Items selected:" + RESET);
+
+    for (int item : items) {
+        String name = "";
+        if (item == 1) name = "🧪 Potion";
+        else if (item == 2) name = "💨 Smoke Bomb";
+        else if (item == 3) name = "💎 Power Stone";
+
+        System.out.println("     ➤ " + name);
+    }
+
+    sleep(700);
+}
 
 
     // ========== LEVEL SELECT ==========
@@ -190,6 +216,7 @@ public class CommandLineUI implements UI{
 
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
+                scanner.nextLine(); 
                 if (choice >= 1 && choice <= 3) return choice;
             } else {
                 scanner.next();
@@ -198,19 +225,48 @@ public class CommandLineUI implements UI{
             invalidInput("Invalid level! Enter 1-3.");
         }
     }
+    public void displaySelectedLevel(int level) {
+    String difficulty = (level == 1) ? "EASY" :
+                        (level == 2) ? "MEDIUM" : "HARD";
+
+    System.out.println();
+    System.out.println(GREEN + BOLD + "  ✔ Difficulty set to: " + difficulty + RESET);
+    sleep(600);
+}
 
     public int getPlayerAction() {
-        while (true) {
-            if (scanner.hasNextInt()) {
-                int action = scanner.nextInt();
-                if (action >= 1 && action <= 4) return action;
-            } else {
-                scanner.next();
-            }
+    while (true) {
 
-            invalidInput("Invalid action! Enter 1-4.");
+        if (scanner.hasNextInt()) {
+            int action = scanner.nextInt();
+            
+            
+            scanner.nextLine(); // ✅ prevent input bugs later
+
+            if (action >= 1 && action <= 4) {
+                return action;
+            }
+        } else {
+            scanner.next(); // clear invalid input
         }
+
+        invalidInput("Invalid action! Enter 1-4.");
     }
+}
+public void displaySelectedAction(int action) {
+    String actionName = "";
+
+    switch (action) {
+        case 1: actionName = "👊 Basic Attack"; break;
+        case 2: actionName = "🛡 Defend"; break;
+        case 3: actionName = "🎒 Use Item"; break;
+        case 4: actionName = "✨ Special Skill"; break;
+    }
+
+    System.out.println();
+    System.out.println(GREEN + BOLD + "  ✔ You chose: " + actionName + RESET);
+    sleep(400);
+}
 
     
 
@@ -238,7 +294,7 @@ public class CommandLineUI implements UI{
 
     // ========== ACTION MENU ==========
 
-    public void displayActionMenu(Player player) {
+    public void displayActionMenu(Combatant player) {
         System.out.println();
         System.out.println(PURPLE + "  ┌─────────────────────────────────────┐" + RESET);
         System.out.println(PURPLE + "  │" + BOLD + YELLOW + "          ⚔  YOUR TURN! ⚔           " + RESET + PURPLE + "│" + RESET);

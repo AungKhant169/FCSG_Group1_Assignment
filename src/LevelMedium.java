@@ -5,11 +5,11 @@ public class LevelMedium extends Level {
     public LevelMedium() {
         List<Enemy> initialList = new ArrayList<>();
         List<Enemy> backupList = new ArrayList<>();
-        initialList.add(new Goblin());
-        initialList.add(new Wolf());
+        initialList.add(new Goblin("Goblin A"));
+        initialList.add(new Wolf("Wolf A"));
         setInitialWave(initialList);
-        backupList.add(new Wolf());
-        backupList.add(new Wolf());
+        backupList.add(new Wolf("Wolf B"));
+        backupList.add(new Wolf("Wolf C"));
         setBackupWave(backupList);
     }
 }

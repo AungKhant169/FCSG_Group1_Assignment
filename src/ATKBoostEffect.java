@@ -7,8 +7,8 @@ public class ATKBoostEffect extends Buff {
         this.boostAmount = boostAmount;
     }
     
-    public void modifyAttack(Combatant combatant) {
-    	combatant.setAddOnAttack(combatant.getAddOnAttack()+boostAmount);
+    public int modifyAttack() {
+    	return boostAmount;
     }
 
     @Override

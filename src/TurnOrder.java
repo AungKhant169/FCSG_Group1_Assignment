@@ -20,15 +20,15 @@ public class TurnOrder {
                 }
             }
 		}
-		this.displayOrder(turnOrder);
+//		this.displayOrder(turnOrder);
 		return turnOrder;
 	}
 
-	private void displayOrder(ArrayList<Combatant> turnOrder) {
+	public void displayOrder(ArrayList<Combatant> turnOrder) {
 		ArrayList<Combatant> uniqueList = new ArrayList<>();
 		for (Combatant combatant : turnOrder) {
             boolean duplicate = false;
-			String combatantName = combatant.getName();
+			String combatantName = combatant.getSimpleName();
             for (Combatant unique : uniqueList) {
                 if (unique.getName().equals(combatantName)) {
                     duplicate = true;
