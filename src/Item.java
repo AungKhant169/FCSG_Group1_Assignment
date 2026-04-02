@@ -16,7 +16,7 @@ public abstract class Item {
     public String getDescription() { return description; }
 
     // Abstract — each subclass defines its own use behaviour( so overridden- POLYMORPHISM)
-    public abstract void use(Combatant user);
+    public abstract void use(Combatant user, BattleContext bc);
 
     @Override
     public String toString() {

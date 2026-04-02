@@ -110,12 +110,8 @@ public abstract class Combatant {
 		return currentCooldown;
 	}
 
-	public void setCurrentCooldown() {
+	public void setCurrentCooldown(int specialSkillCooldown) {
 		currentCooldown = specialSkillCooldown;
-	}
-
-	public void reduceCurrentCooldown() {
-		currentCooldown -= 1;
 	}
 
 	public void addItem(Item item) {
@@ -152,5 +148,12 @@ public abstract class Combatant {
 	}
 	public List<Item> getItems() {
 		return items;
+	}
+	
+	public void specialSkill(BattleContext bc, boolean cdReset) {
+	}
+	
+	public void reduceSpecialSkillCooldown() { 
+		this.currentCooldown = (this.currentCooldown > 0) ? this.currentCooldown - 1: 0;
 	}
 }

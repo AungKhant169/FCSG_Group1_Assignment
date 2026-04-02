@@ -7,7 +7,7 @@ public class Potion extends Item {
     }
 
     @Override
-    public void use(Combatant user) {
+    public void use(Combatant user, BattleContext bc) {
         user.increaseHP(HEAL_AMOUNT);
         // increaseHP in Combatant should already ensure limit is not exceeded with the min(currentHP + heal, maxHP)
         

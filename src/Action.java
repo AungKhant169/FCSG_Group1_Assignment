@@ -13,4 +13,6 @@ public interface Action {
     default void execute(Combatant c, UI ui) {
         throw new UnsupportedOperationException("Target execution is not supported by this action.");
     }
+    
+    default void execute(Combatant c, BattleContext bc) {}
 }

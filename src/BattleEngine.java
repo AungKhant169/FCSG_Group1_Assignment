@@ -14,7 +14,6 @@ public class BattleEngine {
 
 	public boolean run(Combatant player, Level level) {
 		List<Enemy> enemies = level.getInitialWave();
-		enemies.addAll(level.getBackupWave());
 		List<Combatant> orderedCombatant = getAllOrderedCombatants(player, enemies);
 		to.displayOrder(new ArrayList<Combatant>(orderedCombatant));
 		while (player.isAlive() && level.hasLivingEnemiesInitialW()) {
@@ -22,7 +21,12 @@ public class BattleEngine {
 			ui.displayRoundStart(roundCount);
 			this.runRound(player, level.getLivingEnemiesInitialW());
 		}
-		while (player.isAlive() && level.hasLivingEnemiesBackupW()) {
+		
+		ui.printLine("BACK UP WAVE SPAWNED!");
+		enemies = level.getBackupWave();
+		orderedCombatant = getAllOrderedCombatants(player, enemies);
+		to.displayOrder(new ArrayList<Combatant>(orderedCombatant));
+		while (player.isAlive() && !level.hasLivingEnemiesInitialW() && level.hasLivingEnemiesBackupW()) {
 			roundCount++;
 			ui.displayRoundStart(roundCount);
 			this.runRound(player, level.getLivingEnemiesBackupW());
@@ -40,12 +44,9 @@ public class BattleEngine {
 		for (Combatant c: orderedCombatant) {
 			c.reduceEffectDurations();
 			c.removeExpiredEffects();
+			c.reduceSpecialSkillCooldown();
 		}
 		ui.displayRoundSummary(orderedCombatant);
-		for (StatusEffect e : player.getStatusEffects()) {
-			System.out.println(e.getName() + " " + e.getDuration());
-
-		}
 	}
 
 	private void executeTurn(Combatant c, BattleContext bc) {

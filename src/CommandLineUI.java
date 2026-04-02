@@ -44,7 +44,7 @@ public class CommandLineUI implements UI{
 
     private void sleep(int ms) {
 //        try { Thread.sleep(ms); } catch (InterruptedException e) {}
-        try { Thread.sleep(0); } catch (InterruptedException e) {}
+        try { Thread.sleep(2); } catch (InterruptedException e) {}
     }
 
     private void typeWrite(String text, int delayMs) {
@@ -247,6 +247,11 @@ public void displaySelectedItems(List<Integer> items) {
             if (action >= 1 && action <= 4) {
             	if ( action == 3 && !c.hasItems()) {
             		invalidInput("You have no item to use! Please choose different action.");
+            		System.out.print(BOLD + "  Your move (1-4): " + RESET);
+            		continue;
+            	} else if (action == 4 && c.getCurrentCooldown() > 0) { 
+            		invalidInput("Your special skill is on cooldown!");
+            		System.out.print(BOLD + "  Your move (1-4): " + RESET);
             		continue;
             	} else {
                     return action;
@@ -317,7 +322,7 @@ public void displaySelectedAction(int action) {
         if (player.isSkillReady()) {
             System.out.println(PURPLE + "  │ " + RESET + YELLOW + "4. ✨ Special Skill (READY!)" + RESET + "         " + PURPLE + "│" + RESET);
         } else {
-            System.out.println(PURPLE + "  │ " + RESET + RED + "4. ✨ Special Skill (Cooldown: " + player.getSpecialSkillCooldown() + " turns)" + RESET + " " + PURPLE + "│" + RESET);
+            System.out.println(PURPLE + "  │ " + RESET + RED + "4. ✨ Special Skill (Cooldown: " + player.getCurrentCooldown() + " turns)" + RESET + " " + PURPLE + "│" + RESET);
         }
 
         System.out.println(PURPLE + "  └─────────────────────────────────────┘" + RESET);

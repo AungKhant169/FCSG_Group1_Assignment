@@ -18,9 +18,16 @@ public class Wizard extends Player {
 		} else if (action == 2) {
 			new DefendAction().execute(this, bc.getUI());
 		} else if (action == 3) {
-			
+			new UseItem().execute(this, bc);
 		} else { // action == 4, assuming only 1-4 is passed from getPlayerAction()
-			new ArcaneBlastSkill().execute(this, bc.getEnemies(), bc.getUI());
+			this.specialSkill(bc, false);
+		}
+	}
+	
+	public void specialSkill(BattleContext bc, boolean cdReset) {
+		new ArcaneBlastSkill().execute(this, bc.getEnemies(), bc.getUI());
+		if (!cdReset) {
+			this.setCurrentCooldown(this.getSpecialSkillCooldown());
 		}
 	}
 }

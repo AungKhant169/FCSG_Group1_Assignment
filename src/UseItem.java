@@ -1,11 +1,11 @@
 
 public class UseItem implements Action{
-	public void execute(Combatant c, UI ui) {
-		int itemToUse = ui.getUseItem(c);
+	public void execute(Combatant c, BattleContext bc) {
+		int itemToUse = bc.getUI().getUseItem(c);
 		int itemIndex = itemToUse - 1;
-		c.getItems().get(itemIndex).use(c);
 		String display = c.getName() + " -> used " + c.getItems().get(itemIndex).getName();
-		ui.displayActionResult(display);
+		bc.getUI().displayActionResult(display);
+		c.getItems().get(itemIndex).use(c, bc);
 		c.getItems().remove(itemIndex);
 	}
 }

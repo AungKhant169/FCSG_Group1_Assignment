@@ -17,9 +17,15 @@ public class Warrior extends Player {
 		} else if (action == 2) {
 			new DefendAction().execute(this, bc.getUI());
 		} else if (action == 3) {
-			new UseItem().execute(this, bc.getUI());
+			new UseItem().execute(this,bc);
 		} else { // action == 4, assuming only 1-4 is passed from getPlayerAction()
-			new ShieldBashSkill().execute(this, bc.getEnemies().get(0), bc.getUI());
+			this.specialSkill(bc, false);
+		}
+	}
+	public void specialSkill(BattleContext bc, boolean cdReset) {
+		new ShieldBashSkill().execute(this, bc.getEnemies().get(0), bc.getUI());
+		if (!cdReset) {
+			this.setCurrentCooldown(this.getSpecialSkillCooldown());
 		}
 	}
 }
