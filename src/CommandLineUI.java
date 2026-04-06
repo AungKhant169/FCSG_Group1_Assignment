@@ -414,13 +414,33 @@ public void displaySelectedAction(int action) {
     
     public int getUseItem(Combatant c) {
 
-        clearScreen();
-        printDivider();
-        System.out.println(CYAN + "║" + BOLD + YELLOW + "          🎒  CHOOSE ITEM TO USE  🎒          " + RESET + CYAN + "║" + RESET);
-        System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
-        for(Item i: c.getItems()) {
-        	System.out.println(i.getName());
+         clearScreen();
+    printDivider();
+    System.out.println(CYAN + "║" + BOLD + YELLOW + "      🎒  CHOOSE ITEM TO USE  🎒      " + RESET + CYAN + "║" + RESET);
+    System.out.println(CYAN + "╠══════════════════════════════════════╣" + RESET);
+
+    List<Item> items = c.getItems();
+
+    for (int i = 0; i < items.size(); i++) {
+        System.out.println("  " + (i + 1) + ". " + items.get(i).getName());
+    }
+
+    printDividerBottom();
+    System.out.print(BOLD + "  Choose item: " + RESET);
+
+    while (true) {
+        if (scanner.hasNextInt()) {
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice >= 1 && choice <= items.size()) {
+                return choice - 1; // return index
+            }
+        } else {
+            scanner.next();
         }
-        return scanner.nextInt();
+
+        invalidInput("Invalid choice!");
     }
 }
+    }
