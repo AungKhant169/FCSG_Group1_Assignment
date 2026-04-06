@@ -12,14 +12,29 @@ public class Game {
 	}
 
 	public void start() {
-		boolean isLevelWon;
-		ui.displayWelcome();
-		Combatant player = initPlayer();
-		Level level = initLevel();
-		BattleEngine be = new BattleEngine(ui);
-		isLevelWon = be.run(player, level);
-		showResult(isLevelWon);
-	}
+		boolean playAgain; // ✅ THIS LINE IS REQUIRED
+
+    do {
+        ui.displayWelcome();
+
+        Combatant player = initPlayer();
+        Level level = initLevel();
+
+        BattleEngine be = new BattleEngine(ui);
+
+        boolean isLevelWon = be.run(player, level);
+
+        if (isLevelWon) {
+            ui.displayVictory();
+        } else {
+            ui.displayDefeat();
+        }
+
+        playAgain = ui.askPlayAgain(); // now works
+
+    } while (playAgain);
+}
+	
 
 	public Combatant initPlayer() {
 		int playerClass;
