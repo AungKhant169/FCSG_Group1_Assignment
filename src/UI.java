@@ -43,4 +43,5 @@ public interface UI {
 	public void printLine(String text);
 	
 	public int getUseItem(Combatant c);
+	boolean askPlayAgain();
 }

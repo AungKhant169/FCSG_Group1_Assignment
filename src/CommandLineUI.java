@@ -443,4 +443,28 @@ public void displaySelectedAction(int action) {
         invalidInput("Invalid choice!");
     }
 }
+
+// checking for play again 
+@Override
+public boolean askPlayAgain() {
+    System.out.println();
+    System.out.println(YELLOW + BOLD + "  What would you like to do next?" + RESET);
+    System.out.println(CYAN + "  1. 🔁 Play Again");
+    System.out.println(CYAN + "  2. ❌ Exit Game");
+    System.out.print(BOLD + "  Your choice (1-2): " + RESET);
+
+    while (true) {
+        if (scanner.hasNextInt()) {
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1) return true;
+            if (choice == 2) return false;
+        } else {
+            scanner.next();
+        }
+
+        invalidInput("Enter 1 or 2.");
+    }
+}
     }
