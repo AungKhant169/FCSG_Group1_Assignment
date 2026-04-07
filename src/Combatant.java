@@ -27,7 +27,6 @@ public abstract class Combatant {
 		this.statusEffects = new ArrayList<>();
 		this.items = new ArrayList<>();
 	}
-
 	public int getMaxHp() {
 		return maxHp;
 	}
@@ -123,7 +122,11 @@ public abstract class Combatant {
 	}
 
 	public boolean hasItems() {
-		return (items.size() > 0);
+		int usableItemCount = 0;
+		for (Item i: this.items) {
+			if (i.isUsable()) usableItemCount++;
+		}
+		return usableItemCount > 0;
 	}
 	public abstract void performAction(BattleContext bc);
 	
@@ -155,5 +158,14 @@ public abstract class Combatant {
 	
 	public void reduceSpecialSkillCooldown() { 
 		this.currentCooldown = (this.currentCooldown > 0) ? this.currentCooldown - 1: 0;
+	}
+	
+	public void resetCombatant() {
+		this.currentHp = this.maxHp;
+		this.currentCooldown = 0;
+		this.statusEffects = new ArrayList<>();
+		for(int i = 0; i < this.items.size(); i++) {
+			this.items.get(i).resetUseCount();
+		}
 	}
 }

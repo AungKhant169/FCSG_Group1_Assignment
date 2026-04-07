@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 public abstract class Level {
-	private String levelInfo;
     private List<Enemy> initialWave;
     private List<Enemy> backupWave;
 
@@ -50,6 +49,15 @@ public abstract class Level {
             if (e.isAlive()) living.add(e);
         }
         return living;
+    }
+    
+    public void resetLevel() {
+    	for (int i = 0; i<this.initialWave.size(); i++) {
+    		this.initialWave.get(i).resetCombatant();
+    	}
+    	for( int j = 0; j<this.backupWave.size(); j++) {
+    		this.backupWave.get(j).resetCombatant();
+    	}
     }
 
 }

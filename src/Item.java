@@ -4,11 +4,15 @@ public abstract class Item {
     // Fields
     private String name;
     private String description;
+    private int useCount;
+    private int currentUseCount;
 
     // Constructor
-    public Item(String name, String description) {
+    public Item(String name, String description, int useCount) {
         this.name = name;
         this.description = description;
+        this.useCount = useCount;
+        this.currentUseCount = useCount;
     }
 
     // Getters
@@ -21,5 +25,23 @@ public abstract class Item {
     @Override
     public String toString() {
         return name + ": " + description;
+    }
+    public boolean isUsable() {
+    	return (currentUseCount > 0);
+    }
+    
+    public void reduceUseCount() {
+    	this.currentUseCount--;
+    }
+    
+    public void resetUseCount() {
+    	this.currentUseCount = useCount;
+    }
+    
+    public int getCurrentUseCount() {
+    	return this.currentUseCount;
+    }
+    public int getUseCount() {
+    	return this.useCount;
     }
 }

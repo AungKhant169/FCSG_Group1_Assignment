@@ -3,7 +3,7 @@ public class Potion extends Item {
     private static final int HEAL_AMOUNT = 100;
 
     public Potion() {
-        super("🧪 Potion", "Restores 100 HP, up to max HP.");
+        super("🧪 Potion", "Restores 100 HP, up to max HP.", 1);
     }
 
     @Override

@@ -2,7 +2,7 @@
 public class PowerStone extends Item {
 
     public PowerStone() {
-        super("💎 Power Stone", "Power Stone does not affect cooldown) ");
+        super("💎 Power Stone", "Power Stone does not affect cooldown) ", 1);
     }
 
     @Override

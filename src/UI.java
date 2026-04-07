@@ -32,6 +32,8 @@ public interface UI {
 
 	public void displayRoundSummary(List<Combatant> combatants);
 
+	public void displayLevelSummary(List<Combatant> combatants, int totalRound);
+
 	public void displayBackupSpawn();
 
 	public void displayStunned(String name);
@@ -41,7 +43,13 @@ public interface UI {
 	public void displayDefeat();
 
 	public void printLine(String text);
-	
+
 	public int getUseItem(Combatant c);
-	boolean askPlayAgain();
+
+	public String askToContinue();
+
+	public String askToTryAgain();
+
+	public void displayEndGame();
+
 }

@@ -1,44 +1,28 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-//    private Player player;
-//    private Level level;
-//    private int roundCount;
-//    private BattleEngine battleManager;
+	private Combatant player;
+	private Level level;
+	private BattleEngine battleManager;
 	private UI ui;
 
 	public Game() {
 		this.ui = new CommandLineUI();
+		ui.displayWelcome();
 	}
 
 	public void start() {
-		boolean playAgain; // ✅ THIS LINE IS REQUIRED
+		initPlayer();
+		initLevel();
+		this.battleManager = new BattleEngine(ui);
+		battleManager.run(player, level);
+		showResult();
+//        playAgain = ui.askPlayAgain(); // now works
+	}
 
-    do {
-        ui.displayWelcome();
-
-        Combatant player = initPlayer();
-        Level level = initLevel();
-
-        BattleEngine be = new BattleEngine(ui);
-
-        boolean isLevelWon = be.run(player, level);
-
-        if (isLevelWon) {
-            ui.displayVictory();
-        } else {
-            ui.displayDefeat();
-        }
-
-        playAgain = ui.askPlayAgain(); // now works
-
-    } while (playAgain);
-}
-	
-
-	public Combatant initPlayer() {
+	public void initPlayer() {
 		int playerClass;
-		Combatant player;
 		playerClass = ui.selectClass();
 		// assuming ui class return only the valid input
 		// hence 1 for warrior and 2 for wizard,
@@ -46,54 +30,81 @@ public class Game {
 		// update on this function is needed if more player classes are added
 		ui.displaySelectedClass(playerClass);
 		if (playerClass == 1) {
-			player = new Warrior();
+			this.player = new Warrior();
 		} else {
-			player = new Wizard();
+			this.player = new Wizard();
 		}
-		initItem(player);
-		return player;
+		initItem();
 
 	}
 
-	public Level initLevel() {
+	public void initLevel() {
 		int selectedLevel;
 		selectedLevel = ui.selectLevel();
 		// assuming ui class return only the valid input
 
 		// similar idea with initPlayer()
 		ui.displaySelectedLevel(selectedLevel);
-		Level level;
 		if (selectedLevel == 1) {
-			level = new LevelEasy();
+			this.level = new LevelEasy();
 		} else if (selectedLevel == 2) {
-			level = new LevelMedium();
+			this.level = new LevelMedium();
 		} else {
-			level = new LevelHard();
+			this.level = new LevelHard();
 		}
 
-		return level;
 	}
 
-	public void showResult(boolean isLevelWon) {
-
-		if (isLevelWon) {
+	public void showResult() {
+		List<Combatant> resultList = new ArrayList<Combatant>();
+		if (this.battleManager.getIsLevelWon()) {
 			ui.displayVictory();
+			resultList.add(player);
 		} else {
 			ui.displayDefeat();
+			if (this.level.hasLivingEnemiesInitialW()) {
+				resultList.addAll(this.level.getLivingEnemiesInitialW());
+			}
+			if (this.level.hasLivingEnemiesBackupW()) {
+				resultList.addAll(this.level.getLivingEnemiesBackupW());
+			}
 		}
+		ui.displayLevelSummary(resultList, this.battleManager.getTotalRound());
+		manageEndGame();
 	}
-	
-	public void initItem(Combatant c) {
+
+	public void initItem() {
 		List<Integer> items = ui.selectItems();
 		ui.displaySelectedItems(items);
-		for (int i: items) {
+		for (int i : items) {
 			if (i == 1) {
-				c.addItem(new Potion());
+				this.player.addItem(new Potion());
 			} else if (i == 2) {
-				c.addItem(new SmokeBomb());
+				this.player.addItem(new SmokeBomb());
 			} else if (i == 3) {
-				c.addItem(new PowerStone());
-			} 
+				this.player.addItem(new PowerStone());
+			}
+		}
+	}
+
+	public void manageEndGame() {
+		String choice;
+		if (this.battleManager.getIsLevelWon()) {
+			choice = ui.askToContinue();
+		} else {
+			choice = ui.askToTryAgain();
+		}
+		if (choice.equals("start again")) {
+			this.start();
+		} else if (choice.equals("play same")) {
+			this.player.resetCombatant();
+			this.level.resetLevel();
+			this.battleManager = new BattleEngine(ui);
+			battleManager.run(player, level);
+			showResult();
+		} else if (choice.equals("exit")) {
+			ui.displayEndGame();
+			return;
 		}
 	}
 
