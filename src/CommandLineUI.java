@@ -554,7 +554,7 @@ public class CommandLineUI implements UI {
 				scanner.nextLine();
 
 				System.out.println();
-				if (choice == 1 || choice == 2 || choice == 3) {
+				if (choice == 1) {
 					return "play same";
 				} else if (choice == 2) {
 					return "start again";
