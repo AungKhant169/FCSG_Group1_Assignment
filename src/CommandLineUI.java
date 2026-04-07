@@ -545,7 +545,7 @@ public class CommandLineUI implements UI {
 		System.out.println(YELLOW + BOLD + "  What would you like to do next?" + RESET);
 		System.out.println(CYAN + "  1. 🔁 Replay with Same Setting");
 		System.out.println(CYAN + "  2. ✔ Start a New Game");
-		System.out.println(CYAN + "  2. ❌ Exit Game");
+		System.out.println(CYAN + "  3. ❌ Exit Game");
 		System.out.print(BOLD + "  Your choice (1-3): " + RESET);
 
 		while (true) {
