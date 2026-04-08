@@ -9,6 +9,7 @@ import game.items.Potion;
 import game.items.PowerStone;
 import game.items.SmokeBomb;
 import game.levels.Level;
+import game.levels.LevelCustom;
 import game.levels.LevelEasy;
 import game.levels.LevelHard;
 import game.levels.LevelMedium;
@@ -63,8 +64,10 @@ public class Game {
 			this.level = new LevelEasy();
 		} else if (selectedLevel == 2) {
 			this.level = new LevelMedium();
-		} else {
+		} else if (selectedLevel == 3) {
 			this.level = new LevelHard();
+		} else {
+			this.level = new LevelCustom(ui);
 		}
 
 	}
