@@ -1,5 +1,6 @@
 package game.entities;
 import game.actions.BasicAttack;
+import game.actions.SingleTargetAction;
 import game.actions.DefendAction;
 import game.actions.UseItem;
 import game.core.BattleContext;
@@ -13,7 +14,9 @@ public abstract class Player extends Combatant {
 		int action = bc.getUI().getPlayerAction(this);
 		bc.getUI().displaySelectedAction(action);
 		if (action == 1) {
-			new BasicAttack().execute(this, bc.getEnemies().get(0), bc.getUI());
+			SingleTargetAction ba = new BasicAttack();
+			Combatant target = ba.pickTarget(bc);
+			ba.execute(this, target, bc.getUI());
 		} else if (action == 2) {
 			new DefendAction().execute(this, bc.getUI());
 		} else if (action == 3) {

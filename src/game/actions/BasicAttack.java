@@ -1,11 +1,12 @@
 package game.actions;
 import static java.lang.Math.max;
 
+import game.core.BattleContext;
 import game.effects.StatusEffect;
 import game.entities.Combatant;
 import game.ui.UI;
 
-public class BasicAttack implements Action {
+public class BasicAttack extends SingleTargetAction{
 
     @Override
     public void execute(Combatant attacker, Combatant target, UI ui) {

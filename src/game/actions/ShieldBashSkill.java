@@ -3,7 +3,7 @@ import game.effects.StunEffect;
 import game.entities.Combatant;
 import game.ui.UI;
 
-public class ShieldBashSkill implements Action {
+public class ShieldBashSkill extends SingleTargetAction {
 
     @Override
     public void execute(Combatant warrior, Combatant target, UI ui) {

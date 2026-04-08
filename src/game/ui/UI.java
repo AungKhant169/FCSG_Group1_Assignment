@@ -2,6 +2,7 @@ package game.ui;
 import java.util.List;
 
 import game.entities.Combatant;
+import game.entities.Enemy;
 
 public interface UI {
 
@@ -54,5 +55,7 @@ public interface UI {
 	public String askToTryAgain();
 
 	public void displayEndGame();
+	
+	public int getTargetEnemy(List<Enemy> enemies);
 
 }

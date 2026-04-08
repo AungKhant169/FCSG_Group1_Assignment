@@ -1,9 +1,11 @@
 package game.ui;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import game.entities.Combatant;
+import game.entities.Enemy;
 import game.items.Item;
 
 public class CommandLineUI implements UI {
@@ -414,10 +416,10 @@ public class CommandLineUI implements UI {
 				System.out.println(CYAN + "    " + RESET + RED + BOLD + String.format("%-12s", c.getName()) + RESET
 						+ RED + " ✗ ELIMINATED" + RESET);
 			}
-			if(c.getItems().size() > 0) {
-				for(Item i : c.getItems()) {
+			if (c.getItems().size() > 0) {
+				for (Item i : c.getItems()) {
 					System.out.println(CYAN + "    " + RESET + BOLD + String.format("%-20s", i.getName()) + RESET + " "
-							 + " " + GREEN + i.getCurrentUseCount() + RESET);
+							+ " " + GREEN + i.getCurrentUseCount() + RESET);
 				}
 			}
 		}
@@ -500,7 +502,7 @@ public class CommandLineUI implements UI {
 				scanner.nextLine();
 
 				if (choice >= 1 && choice <= items.size()) {
-					if (items.get(choice-1).isUsable()) {
+					if (items.get(choice - 1).isUsable()) {
 						return choice - 1; // return index
 					} else {
 						invalidInput("This item can't be used anymore! Please choose different item!");
@@ -572,9 +574,46 @@ public class CommandLineUI implements UI {
 			invalidInput("Enter 1, 2 or 3.");
 		}
 	}
-	
+
 	public void displayEndGame() {
 
 		System.out.println(GREEN + BOLD + "                THANK YOU FOR PLAYING THE GAME   " + RESET);
+	}
+
+	public int getTargetEnemy(List<Enemy> enemies) {
+		System.out.println();
+		System.out.println(YELLOW + BOLD + "  Who would you like to attack?" + RESET);
+		int targetIndex = -1;
+		for (int i = 0; i < enemies.size(); i++) {
+			Enemy c = enemies.get(i);
+			if (c.isAlive()) {
+				String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
+				System.out.println(CYAN + "  │ " + RESET + BOLD + (i + 1) + ". " + String.format("%-12s", c.getName())
+						+ RESET + " " + bar + " " + GREEN + c.getCurrentHp() + "HP" + RESET);
+			} else {
+				System.out.println(CYAN + "  │ " + RESET + RED + BOLD + (i + 1) + ". "
+						+ String.format("%-12s", c.getName()) + RESET + RED + " ✗ ELIMINATED" + RESET);
+			}
+		}
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int choice = scanner.nextInt() - 1;
+				scanner.nextLine();
+
+				System.out.println();
+				if (choice >= 0 && choice < enemies.size()) {
+					if (enemies.get(choice).isAlive()) {
+						return choice;
+					} else {
+						invalidInput("The chosen target is already eliminated. Please choose different target!");
+					}
+				}
+			} else {
+				scanner.next();
+			}
+
+			invalidInput("Invalid Target! Choose from (1-" + enemies.size() + ")!");
+		}
+
 	}
 }

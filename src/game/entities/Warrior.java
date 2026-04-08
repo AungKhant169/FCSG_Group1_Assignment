@@ -1,5 +1,6 @@
 package game.entities;
 import game.actions.ShieldBashSkill;
+import game.actions.SingleTargetAction;
 import game.core.BattleContext;
 
 public class Warrior extends Player {
@@ -13,7 +14,9 @@ public class Warrior extends Player {
 	}
 
 	public void specialSkill(BattleContext bc, boolean cdReset) {
-		new ShieldBashSkill().execute(this, bc.getEnemies().get(0), bc.getUI());
+		SingleTargetAction sb = new ShieldBashSkill();
+		Combatant target = sb.pickTarget(bc);
+		sb.execute(this, target, bc.getUI());
 		if (!cdReset) {
 			this.setCurrentCooldown(this.getSpecialSkillCooldown());
 		}
