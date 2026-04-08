@@ -1,7 +1,7 @@
 package game.effects;
 import game.entities.Combatant;
 
-public abstract class StatusEffect {
+public class StatusEffect {
 	private String name;
 	private int duration;
 
