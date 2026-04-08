@@ -1,6 +1,7 @@
 package game.effects;
 
 import game.entities.Combatant;
+import game.ui.UI;
 
 public class StatusEffect {
 	private String name;
@@ -58,4 +59,7 @@ public class StatusEffect {
 	public int interactWithInDamage(int damage) {
 		return damage;
 	};
+	
+	public void inflectDamage(Combatant c, UI ui) {
+	}
 }
