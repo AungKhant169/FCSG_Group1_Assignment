@@ -5,7 +5,7 @@ public class Wolf extends Enemy {
 		super(40, 45, 5, 35, name, "Wolf");
 	}
 	
-	public void performAction(BattleContext bc) {
-		new BasicAttack().execute(this, bc.getPlayer(), bc.getUI());
+	public void specialSkill(BattleContext bc, boolean cd) {
+		
 	}
 }
