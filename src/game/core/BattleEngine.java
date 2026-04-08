@@ -9,10 +9,10 @@ import game.levels.Level;
 import game.ui.UI;
 
 public class BattleEngine {
-	TurnOrder to;
-	UI ui;
-	int roundCount;
-	boolean isLevelWon;
+	private TurnOrder to;
+	private UI ui;
+	private int roundCount;
+	private boolean isLevelWon;
 
 	public BattleEngine(UI ui) {
 		this.ui = ui;
