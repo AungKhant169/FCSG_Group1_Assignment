@@ -5,7 +5,7 @@ import game.entities.Enemy;
 
 import java.util.ArrayList;
 
-public abstract class Level {
+public class Level {
     private List<Enemy> initialWave;
     private List<Enemy> backupWave;
 
