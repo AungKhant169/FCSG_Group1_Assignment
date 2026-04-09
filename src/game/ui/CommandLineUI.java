@@ -401,19 +401,22 @@ public class CommandLineUI implements UI {
 	}
 
 	//to display the hp bars 
-	public void displayCombatHpUpdate(Combatant attacker, Combatant target) {
+	public void displayCombatHpUpdate(Combatant attacker, List<Combatant> targets) {
     sleep(150);
     System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
-	//loops through both attacker and target 
-    for (Combatant c : List.of(attacker, target)) {
+    // loops through attacker and all targets to show their HP bars
+    List<Combatant> all = new ArrayList<>(targets);
+    all.add(0, attacker); // put attacker first in the list
+    for (Combatant c : all) {
         String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
-		//build hp bar based on current and the max hp
+        // build hp bar based on current and the max hp
         System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET
                 + " " + bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET);
     }
     System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
     sleep(300);
 }
+
 
 	// ========== LEVEL SUMMARY ==========
 

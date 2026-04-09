@@ -1,6 +1,8 @@
 package game.actions;
 import static java.lang.Math.max;
 
+import java.util.List;
+
 import game.core.BattleContext;
 import game.effects.StatusEffect;
 import game.entities.Combatant;
@@ -32,7 +34,8 @@ public class BasicAttack extends SingleTargetAction{
         }
         ui.displayActionResult(display);
         if (ui instanceof CommandLineUI) {
-    ((CommandLineUI) ui).displayCombatHpUpdate(attacker, target);
+    ((CommandLineUI) ui).displayCombatHpUpdate(attacker, List.of(target));
+}
 }
     }
-}
+
