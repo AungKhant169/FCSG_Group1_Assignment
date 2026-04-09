@@ -404,18 +404,25 @@ public class CommandLineUI implements UI {
 	public void displayCombatHpUpdate(Combatant attacker, List<Combatant> targets) {
     sleep(150);
     System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
-    // loops through attacker and all targets to show their HP bars
-    List<Combatant> all = new ArrayList<>(targets);
-    all.add(0, attacker); // put attacker first in the list
-    for (Combatant c : all) {
-        String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
-        // build hp bar based on current and the max hp
-        System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET
-                + " " + bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET);
+    
+    // show attacker HP with ATTACKER label
+    String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
+    System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET
+            + RED + " [ATTACKER] " + RESET
+            + attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
+    
+    // show all targets HP with TARGET label
+    for (Combatant t : targets) {
+        String bar = hpBar(t.getCurrentHp(), t.getMaxHp());
+        System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", t.getName()) + RESET
+                + YELLOW + " [TARGET]   " + RESET
+                + bar + " " + GREEN + t.getCurrentHp() + "/" + t.getMaxHp() + "HP" + RESET);
     }
+    
     System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
     sleep(300);
 }
+
 
 
 	// ========== LEVEL SUMMARY ==========
