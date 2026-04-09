@@ -233,25 +233,26 @@ public class CommandLineUI implements UI {
 			System.out.println(CYAN + "║" + RESET + "  1. EASY");
 			System.out.println(CYAN + "║" + RESET + "  2. MEDIUM");
 			System.out.println(CYAN + "║" + RESET + "  3. HARD");
+			System.out.println(CYAN + "║" + RESET + "  4. CUSTOM");
 			System.out.println(CYAN + "║" + RESET);
 			printDividerBottom();
-			System.out.print(BOLD + "  Your choice (1-3): " + RESET);
+			System.out.print(BOLD + "  Your choice (1-4): " + RESET);
 
 			if (scanner.hasNextInt()) {
 				int choice = scanner.nextInt();
 				scanner.nextLine();
-				if (choice >= 1 && choice <= 3)
+				if (choice >= 1 && choice <= 4)
 					return choice;
 			} else {
 				scanner.next();
 			}
 
-			invalidInput("Invalid level! Enter 1-3.");
+			invalidInput("Invalid level! Enter 1-4.");
 		}
 	}
 
 	public void displaySelectedLevel(int level) {
-		String difficulty = (level == 1) ? "EASY" : (level == 2) ? "MEDIUM" : "HARD";
+		String difficulty = (level == 1) ? "EASY" : (level == 2) ? "MEDIUM" : (level == 3) ? "HARD" : "CUSTOM";
 
 		System.out.println();
 		System.out.println(GREEN + BOLD + "  ✔ Difficulty set to: " + difficulty + RESET);
@@ -631,4 +632,52 @@ public class CommandLineUI implements UI {
 		}
 
 	}
+
+	public int getWaveSize(String wave) {
+		String invalidMessage = "Invalid Input!";
+		System.out.println();
+		System.out.println(YELLOW + BOLD + "  How many enemies for " + wave + " wave?" + RESET);
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int choice = scanner.nextInt();
+				scanner.nextLine();
+
+				System.out.println();
+				if (choice <= 0) {
+					invalidMessage = "Number of enemies can't be lower or equal to 0!";
+				} else {
+					return choice;
+				}
+			} else {
+				scanner.next();
+			}
+
+			invalidInput(invalidMessage);
+		}
+
+	}
+	
+	public int getEnemyType(int index) {
+		String invalidMessage = "Enter 1 or 2";
+		System.out.println();
+		System.out.println(YELLOW + BOLD + "  Choose type for No."+(index+1)+" enemy?" + RESET);
+		System.out.println(CYAN + "  1. Goblin");
+		System.out.println(CYAN + "  2. Wolf");
+		while (true) {
+			if (scanner.hasNextInt()) {
+				int choice = scanner.nextInt();
+				scanner.nextLine();
+
+				System.out.println();
+				if (choice == 1 || choice == 2) {
+					return choice;
+				}
+			} else {
+				scanner.next();
+			}
+
+			invalidInput(invalidMessage);
+		}
+	}
+
 }

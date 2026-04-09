@@ -65,6 +65,10 @@ public class BattleEngine {
 			return;
 		boolean turnSkip = false;
 		for (StatusEffect effect : c.getStatusEffects()) {
+			effect.inflectDamage(c, ui);
+			if (!c.isAlive()) {
+				return;
+			}
 			if (effect.stopTurn()) {
 				turnSkip = true;
 				break;

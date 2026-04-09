@@ -58,4 +58,8 @@ public interface UI {
 	
 	public int getTargetEnemy(List<Enemy> enemies);
 
+	public int getWaveSize(String wave);
+
+	public int getEnemyType(int index);
+
 }

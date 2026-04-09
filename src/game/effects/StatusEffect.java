@@ -1,10 +1,11 @@
 package game.effects;
+
 import game.entities.Combatant;
+import game.ui.UI;
 
 public class StatusEffect {
 	private String name;
 	private int duration;
-
 
 	public StatusEffect(String name, int duration) {
 		super();
@@ -44,12 +45,13 @@ public class StatusEffect {
 	};
 
 	public boolean stopTurn() {
-		;
 		return false;
 	};
+
 	public boolean blockInDamage() {
 		return false;
 	}
+
 	public int interactWithOutDamage(int damage) {
 		return damage;
 	};
@@ -57,4 +59,7 @@ public class StatusEffect {
 	public int interactWithInDamage(int damage) {
 		return damage;
 	};
+	
+	public void inflectDamage(Combatant c, UI ui) {
+	}
 }
