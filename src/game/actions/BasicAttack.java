@@ -4,7 +4,9 @@ import static java.lang.Math.max;
 import game.core.BattleContext;
 import game.effects.StatusEffect;
 import game.entities.Combatant;
+import game.ui.CommandLineUI;
 import game.ui.UI;
+
 
 public class BasicAttack extends SingleTargetAction{
 
@@ -29,5 +31,8 @@ public class BasicAttack extends SingleTargetAction{
             display = "0 damage (Smoke Bomb active) | " + target.getName() + ": " + target.getCurrentHp();
         }
         ui.displayActionResult(display);
+        if (ui instanceof CommandLineUI) {
+    ((CommandLineUI) ui).displayCombatHpUpdate(attacker, target);
+}
     }
 }

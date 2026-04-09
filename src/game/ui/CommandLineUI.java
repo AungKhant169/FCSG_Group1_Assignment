@@ -399,6 +399,21 @@ public class CommandLineUI implements UI {
 		sleep(500);
 	}
 
+	//to display the hp bars 
+	public void displayCombatHpUpdate(Combatant attacker, Combatant target) {
+    sleep(150);
+    System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
+	//loops through both attacker and target 
+    for (Combatant c : List.of(attacker, target)) {
+        String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
+		//build hp bar based on current and the max hp
+        System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET
+                + " " + bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET);
+    }
+    System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
+    sleep(300);
+}
+
 	// ========== LEVEL SUMMARY ==========
 
 	public void displayLevelSummary(List<Combatant> combatants, int totalRounds) {
