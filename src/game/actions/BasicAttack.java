@@ -32,10 +32,7 @@ public class BasicAttack extends SingleTargetAction{
         if (dmgBlocked) {
             display = "0 damage (Smoke Bomb active) | " + target.getName() + ": " + target.getCurrentHp();
         }
-        ui.displayActionResult(display);
-        if (ui instanceof CommandLineUI) {
-    ((CommandLineUI) ui).displayCombatHpUpdate(attacker, List.of(target));
-}
+        
 }
     }
 
