@@ -6,7 +6,6 @@ import game.effects.StatusEffect;
 import game.entities.Combatant;
 import game.entities.Enemy;
 import game.levels.Level;
-import game.ui.CommandLineUI;
 import game.ui.UI;
 
 public class BattleEngine {
@@ -42,7 +41,6 @@ public class BattleEngine {
 				this.runRound(player, level.getLivingEnemiesBackupW());
 			}
 		}
-//		return player.isAlive();
 		this.isLevelWon = player.isAlive();
 	}
 
@@ -53,9 +51,6 @@ public class BattleEngine {
 		for (Combatant c : orderedCombatant) {
 			executeTurn(c,bc);
 		}
-		if (ui instanceof CommandLineUI) {
-        ((CommandLineUI) ui).displayCombatHpUpdate(player, new ArrayList<>(enemies));
-    }// one box call right after the turn loop
 		for (Combatant c: orderedCombatant) {
 			c.reduceEffectDurations();
 			c.removeExpiredEffects();

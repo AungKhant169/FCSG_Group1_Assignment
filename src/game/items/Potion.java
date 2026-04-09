@@ -12,10 +12,10 @@ public class Potion extends Item {
 
     @Override
     public void use(Combatant user, BattleContext bc) {
+    	String display = "Healed HP: From " + user.getCurrentHp() + " -> To ";
         user.increaseHP(HEAL_AMOUNT);
-        // increaseHP in Combatant should already ensure limit is not exceeded with the min(currentHP + heal, maxHP)
-        
-        // ** item shouldn't do print, it should be handled by UI
-        // System.out.println(user.getName() + " used a Potion! HP restored by " + HEAL_AMOUNT + ".");
+        display = display + user.getCurrentHp();
+        bc.getUI().displayActionResult("", user, null, "", display);
+
     }
 }

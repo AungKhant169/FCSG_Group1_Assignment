@@ -18,8 +18,7 @@ public abstract class Enemy extends Combatant {
 		if (randNum != 0) {
 			new BasicAttack().execute(this, bc.getPlayer(), bc.getUI());
 		} else {
-	    	String display = this.getName()+" -> Poison -> " + bc.getPlayer().getName();
-	    	bc.getUI().displayActionResult(display);
+	    	bc.getUI().displayActionResult("Poison -> " + bc.getPlayer().getName(), this, null, "", "");
 	    	bc.getPlayer().addStatusEffect(new PoisonEffect());
 		}
 	}
