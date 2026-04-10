@@ -372,11 +372,46 @@ public class CommandLineUI implements UI {
 
 	// ========== ACTION RESULT ==========
 
-	public void displayActionResult(String message) {
+	public void displayActionResult(String action, Combatant attacker, Combatant target, String damage, String hpChange) {
 		sleep(200);
-		System.out.println(YELLOW + "  ➤ " + RESET + message);
+//	    System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
+
+		System.out.println();
+		if (attacker != null) {
+			String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
+			System.out.print(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET);
+			if (target != null) {
+				System.out.print(RED + " [ATTACKER] " + RESET);
+			}
+			System.out
+					.print(attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
+			
+		}
+		if (!action.equals("")) {
+			System.out.println(BOLD + " -> " + action + RESET);
+		} else {
+			System.out.println();
+		}
+
+		if (target != null) {
+			String bar = hpBar(target.getCurrentHp(), target.getMaxHp());
+			System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", target.getName()) + RESET + YELLOW
+					+ " [TARGET]   " + RESET + bar + " " + GREEN + target.getCurrentHp() + "/" + target.getMaxHp()
+					+ "HP" + RESET);
+
+		}
+		if (!hpChange.equals("")) {
+			System.out.println(CYAN + "  │ " + RESET + BOLD + hpChange + RESET);
+		}
+		if (!damage.equals("")) {
+			System.out.println(CYAN + "  │ " + RESET + BOLD + damage + RESET);
+		}
+//	    System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
+
+//		System.out.println(YELLOW + "  ➤ " + RESET + message);
 		sleep(300);
 	}
+
 
 	// ========== ROUND SUMMARY ==========
 

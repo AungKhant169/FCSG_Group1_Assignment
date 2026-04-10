@@ -8,7 +8,7 @@ public class ShieldBashSkill extends SingleTargetAction {
     @Override
     public void execute(Combatant warrior, Combatant target, UI ui) {
     	String display = "Warrior -> Shield Bash -> " + target.getName();
-    	ui.displayActionResult(display);
+        ui.displayActionResult("Shield Bash -> " + target.getName(), warrior, null, "", "");
         BasicAttack basicAttack = new BasicAttack() ;
         basicAttack.execute(warrior, target, ui);
         target.addStatusEffect(new StunEffect());

@@ -24,15 +24,15 @@ public class BasicAttack extends SingleTargetAction{
             damage = effect.interactWithInDamage(damage);
         }
 
-        String display = attacker.getName() + " -> Basic Attack -> " + target.getName() + ": HP: " + target.getCurrentHp() + " -> ";
+        String display = "Target HP: From " + target.getCurrentHp() + " -> To ";
         damage = max(0, damage);
         target.takeDamage(damage);
-        display = display + target.getCurrentHp();
-        display = display + "(dmg: " + attackerAtk + " - " + targetDef + " = " + damage + ")";
+        display = display + target.getCurrentHp() + " ";
+        String dmg = "Damage: " + attackerAtk + " - " + targetDef + " = " + damage;
         if (dmgBlocked) {
-            display = "0 damage (Smoke Bomb active) | " + target.getName() + ": " + target.getCurrentHp();
+            display = "0 damage (Smoke Bomb active) ";
         }
+        ui.displayActionResult("Basic Attack", attacker, target, dmg, display);
         
 }
     }
-

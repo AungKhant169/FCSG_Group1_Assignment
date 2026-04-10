@@ -11,8 +11,8 @@ public class ArcaneBlastSkill implements Action {
     @Override
     public void execute(Combatant wizard, List<Enemy> enemyList, UI ui){
         int kills = 0;
-        String display = "Wizard -> ArcaneBlast";
-        ui.displayActionResult(display);
+ui.displayActionResult("Arcane Blast", wizard, null, "", "");
+
         BasicAttack basicAttack = new BasicAttack() ;
 
         for (Enemy enemy : enemyList){
@@ -23,8 +23,9 @@ public class ArcaneBlastSkill implements Action {
 
         if (kills > 0) {
             wizard.addStatusEffect(new ATKBoostEffect(kills * 10));
-            display = "Wizard attack boosted -> " + wizard.getBaseAttack() + " + " + (kills * 10);
-            ui.displayActionResult(display);
+            
+            String display = "Attack Boosted: From "+ wizard.getBaseAttack() + " + " + (kills * 10);
+            ui.displayActionResult("", wizard, null, "", display);
         }
     }
 }

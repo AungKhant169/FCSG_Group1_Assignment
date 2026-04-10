@@ -32,11 +32,13 @@ public interface UI {
 
 	public void displaySelectedAction(int action);
 
-	public void displayActionResult(String message);
+
+public void displayActionResult(String message, Combatant a, Combatant t, String dmg, String hpChange);
 
 	public void displayRoundSummary(List<Combatant> combatants);
 
 	public void displayLevelSummary(List<Combatant> combatants, int totalRound);
+
 
 	public void displayBackupSpawn();
 
