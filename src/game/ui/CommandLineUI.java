@@ -138,7 +138,7 @@ public class CommandLineUI implements UI {
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Fragile but DEVASTATING\"" + RESET);
 			System.out.println(CYAN + "║" + RESET);
 			System.out.println(CYAN + "║  " + BOLD + BLUE + "3. 💀 NECROMANCER" + RESET);
-			System.out.println(CYAN + "║" + RESET + "     HP: 190  ATK: 40  DEF: 15  SPD: 25");
+			System.out.println(CYAN + "║" + RESET + "     HP: 200  ATK: 40  DEF: 15  SPD: 25");
 			System.out.println(
 					CYAN + "║" + RESET + "     " + GREEN + "➤ Resurrection" + RESET + " — Summons skeleton attacking lowest-HP enemy.");
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but RELENTLESS\"" + RESET);
