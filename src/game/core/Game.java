@@ -5,6 +5,7 @@ import java.util.List;
 import game.entities.Combatant;
 import game.entities.Warrior;
 import game.entities.Wizard;
+import game.entities.Necromancer;
 import game.items.Potion;
 import game.items.PowerStone;
 import game.items.SmokeBomb;
@@ -44,10 +45,16 @@ public class Game {
 
 		// update on this function is needed if more player classes are added
 		ui.displaySelectedClass(playerClass);
-		if (playerClass == 1) {
-			this.player = new Warrior();
-		} else {
-			this.player = new Wizard();
+		switch (playerClass) {
+			case 1:	
+				this.player = new Warrior();
+				break;
+			case 2: 
+				this.player = new Wizard();
+				break;
+			case 3:
+				this.player = new Necromancer();
+				break;
 		}
 		initItem();
 

@@ -128,33 +128,46 @@ public class CommandLineUI implements UI {
 			System.out.println(CYAN + "║  " + BOLD + RED + "1. ⚔  WARRIOR" + RESET);
 			System.out.println(CYAN + "║" + RESET + "     HP: 260  ATK: 40  DEF: 20  SPD: 30");
 			System.out.println(
-					CYAN + "║" + RESET + "     " + GREEN + "➤ Shield Bash" + RESET + " — Stuns enemy for 2 turns");
+					CYAN + "║" + RESET + "     " + GREEN + "➤ Shield Bash" + RESET + " — Stuns enemy for 2 turns.");
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but UNSTOPPABLE\"" + RESET);
 			System.out.println(CYAN + "║" + RESET);
 			System.out.println(CYAN + "║  " + BOLD + PURPLE + "2. 🧙 WIZARD" + RESET);
 			System.out.println(CYAN + "║" + RESET + "     HP: 200  ATK: 50  DEF: 10  SPD: 20");
 			System.out.println(CYAN + "║" + RESET + "     " + GREEN + "➤ Arcane Blast" + RESET
-					+ " — Hits ALL enemies, +10 ATK per kill");
+					+ " — Hits ALL enemies, +10 ATK per kill.");
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Fragile but DEVASTATING\"" + RESET);
 			System.out.println(CYAN + "║" + RESET);
+			System.out.println(CYAN + "║  " + BOLD + BLUE + "3. 💀 NECROMANCER" + RESET);
+			System.out.println(CYAN + "║" + RESET + "     HP: 190  ATK: 40  DEF: 15  SPD: 25");
+			System.out.println(
+					CYAN + "║" + RESET + "     " + GREEN + "➤ Resurrection" + RESET + " — Summons skeleton attacking lowest-HP enemy.");
+			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but RELENTLESS\"" + RESET);
+			System.out.println(CYAN + "║" + RESET);
 			printDividerBottom();
-			System.out.print(BOLD + "  Your choice (1-2): " + RESET);
+			System.out.print(BOLD + "  Your choice (1-3): " + RESET);
 
 			if (scanner.hasNextInt()) {
 				int choice = scanner.nextInt();
 				scanner.nextLine();
-				if (choice == 1 || choice == 2)
+				if (choice == 1 || choice == 2 || choice == 3)
 					return choice;
 			} else {
 				scanner.next();
 			}
 
-			invalidInput("Invalid input! Enter 1 or 2.");
+			invalidInput("Invalid input! Enter 1, 2 or 3 only.");
 		}
 	}
 
 	public void displaySelectedClass(int choice) {
-		String className = (choice == 1) ? "⚔ WARRIOR" : "🧙 WIZARD";
+		String className;
+		if (choice == 1) {
+			className = "⚔ WARRIOR";
+		} else if (choice == 2) {
+			className = "🧙 WIZARD";
+		} else {
+			className = "💀 NECROMANCER";
+		}
 
 		System.out.println();
 		System.out.println(GREEN + BOLD + "  ✔ You selected: " + className + RESET);

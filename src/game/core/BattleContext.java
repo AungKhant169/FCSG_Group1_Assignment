@@ -41,13 +41,15 @@ public class BattleContext {
 	}
 
 	public Combatant getLowestHPEnemy(){
-		int index_lowest_hp = 0;
-		for (int i = 1; i < enemies.size(); i++) {
-			if (enemies.get(i).getCurrentHp() < enemies.get(index_lowest_hp).getCurrentHp()){
-				index_lowest_hp = i;
+		Combatant lowest = null;
+		for (Enemy enemy : enemies) {
+			if (enemy.isAlive()) {
+				if (lowest == null || enemy.getCurrentHp() < lowest.getCurrentHp()) {
+					lowest = enemy;
+				}
 			}
 		}
-		return enemies.get(index_lowest_hp);
+		return lowest;
 	}
 
 	public boolean hasLivingAllies() {

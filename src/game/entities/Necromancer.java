@@ -7,7 +7,7 @@ import game.core.BattleContext;
 public class Necromancer extends Player {
     
     public Necromancer() {
-        super(190, 40, 15, 25, 4, "Necromancer", "Necromancer");
+        super(200, 40, 15, 25, 3, "Necromancer", "Necromancer");
     }
 
     public String getName() {

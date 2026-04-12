@@ -6,7 +6,7 @@ import game.core.BattleContext;
 public class Skeleton extends Player {
     
     public Skeleton() {
-        super(50, 20, 0, 10, 0, "Skeleton", "Skeleton");
+        super(50, 25, 0, 25, 0, "Skeleton", "Skeleton");
     }
 
     public String getName() {
