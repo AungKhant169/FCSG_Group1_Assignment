@@ -27,14 +27,14 @@ public abstract class Enemy extends Combatant {
 		}
 		
 		if (target == null) return; // No valid target
-		
+
 		// equal chances for num 0-9
 		// if number == 0, with probability of 10% enemy poison player
 		if (randNum != 0) {
-			new BasicAttack().execute(this, bc.getPlayer(), bc.getUI());
+			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
-	    	bc.getUI().displayActionResult("Poison -> " + bc.getPlayer().getName(), this, null, "", "");
-	    	bc.getPlayer().addStatusEffect(new PoisonEffect());
+	    	bc.getUI().displayActionResult("Poison -> " + target.getName(), this, null, "", "");
+	    	target.addStatusEffect(new PoisonEffect());
 		}
 	}
 	
