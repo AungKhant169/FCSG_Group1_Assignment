@@ -36,6 +36,7 @@ public class BattleEngine {
 		if (level.hasLivingEnemiesBackupW()) {
 			ui.printLine("BACK UP WAVE SPAWNED!");
 			enemies = level.getBackupWave();
+			bc.setEnemies(enemies);
 			orderedCombatant = getAllOrderedCombatants(player, enemies, bc);
 			to.displayOrder(new ArrayList<Combatant>(orderedCombatant));
 			while ((player.isAlive() || bc.hasLivingAllies()) && !level.hasLivingEnemiesInitialW() && level.hasLivingEnemiesBackupW()) {
@@ -59,11 +60,7 @@ public class BattleEngine {
 			c.reduceSpecialSkillCooldown();
 		}
 
-		for (Combatant ally : bc.getAllies()) {
-		if (!ally.isAlive()){
-			bc.removeAlly(ally);
-			} 
-		}
+		bc.getAllies().removeIf(ally -> !ally.isAlive());
 
 		ui.displayRoundSummary(orderedCombatant);
 	}

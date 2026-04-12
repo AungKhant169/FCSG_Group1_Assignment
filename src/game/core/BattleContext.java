@@ -28,6 +28,10 @@ public class BattleContext {
 		return ui;
 	}
 
+	public void setEnemies(List<Enemy> enemies) {
+		this.enemies = enemies;
+	}
+
 	public void addAlly(Combatant ally){
 		allies.add(ally);
 	}

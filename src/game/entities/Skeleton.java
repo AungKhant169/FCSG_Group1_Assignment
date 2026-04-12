@@ -6,7 +6,7 @@ import game.core.BattleContext;
 public class Skeleton extends Player {
     
     public Skeleton() {
-        super(50, 25, 0, 25, 0, "Skeleton", "Skeleton");
+        super(30, 20, 5, 25, 0, "Skeleton", "Skeleton");
     }
 
     public String getName() {
@@ -19,8 +19,10 @@ public class Skeleton extends Player {
 
     @Override 
     public void performAction(BattleContext bc){
-        SingleTargetAction basicAttack = new BasicAttack();
         Combatant target = bc.getLowestHPEnemy();
+        if (target == null) return; // No living enemies left
+
+        SingleTargetAction basicAttack = new BasicAttack();
         basicAttack.execute(this, target, bc.getUI());
     }
 }

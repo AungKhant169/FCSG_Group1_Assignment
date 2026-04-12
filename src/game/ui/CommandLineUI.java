@@ -657,6 +657,7 @@ public class CommandLineUI implements UI {
 	public int getTargetEnemy(List<Enemy> enemies) {
 		System.out.println();
 		System.out.println(YELLOW + BOLD + "  Who would you like to attack?" + RESET);
+
 		int targetIndex = -1;
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy c = enemies.get(i);
@@ -668,6 +669,7 @@ public class CommandLineUI implements UI {
 				System.out.println(CYAN + "  │ " + RESET + RED + BOLD + (i + 1) + ". "
 						+ String.format("%-12s", c.getName()) + RESET + RED + " ✗ ELIMINATED" + RESET);
 			}
+			
 		}
 		while (true) {
 			if (scanner.hasNextInt()) {
