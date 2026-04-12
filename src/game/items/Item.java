@@ -1,4 +1,4 @@
-// only items can tough this class directly as it is abstract
+// only items can touch this class directly as it is abstract
 package game.items;
 
 import game.core.BattleContext;
