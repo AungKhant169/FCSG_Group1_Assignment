@@ -1,6 +1,7 @@
 package game.entities;
 import game.actions.ResurrectionSkill;
 import game.actions.SingleTargetAction;
+import game.core.BattleContext;
 
 
 public class Necromancer extends Player {

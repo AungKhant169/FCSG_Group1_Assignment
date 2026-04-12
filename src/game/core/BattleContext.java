@@ -1,5 +1,6 @@
 package game.core;
 import java.util.List;
+import java.util.ArrayList;
 
 import game.entities.Combatant;
 import game.entities.Enemy;
@@ -49,7 +50,7 @@ public class BattleContext {
 		return enemies.get(index_lowest_hp);
 	}
 
-	private boolean hasLivingAllies() {
+	public boolean hasLivingAllies() {
 		return getAllies().stream().anyMatch(Combatant::isAlive);
 	}
     
