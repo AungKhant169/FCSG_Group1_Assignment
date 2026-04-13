@@ -9,10 +9,8 @@ import game.entities.Wolf;
 import game.ui.UI;
 
 public class LevelCustom extends Level {
-	private UI ui;
 	
 	public LevelCustom (UI ui) {
-		this.ui = ui;
         List<Enemy> initialList = new ArrayList<>();
         List<Enemy> backupList = new ArrayList<>();
         int waveSize = ui.getWaveSize("initial");
