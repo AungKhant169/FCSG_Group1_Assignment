@@ -8,10 +8,6 @@ public class Warrior extends Player {
 	public Warrior() {
 		super(260, 40, 20, 30, 3, "Warrior", "Warrior");
 	}
-	
-	public String getName() {
-		return "Warrior";
-	}
 
 	public void specialSkill(BattleContext bc, boolean cdReset) {
 		SingleTargetAction sb = new ShieldBashSkill();

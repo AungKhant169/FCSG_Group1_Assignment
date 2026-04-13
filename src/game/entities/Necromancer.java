@@ -10,10 +10,6 @@ public class Necromancer extends Player {
         super(200, 40, 15, 25, 3, "Necromancer", "Necromancer");
     }
 
-    public String getName() {
-        return "Necromancer";
-    }
-
     public void specialSkill(BattleContext bc, boolean cdReset) {
 
         SingleTargetAction res = new ResurrectionSkill();
