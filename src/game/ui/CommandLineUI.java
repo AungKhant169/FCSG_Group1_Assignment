@@ -703,8 +703,8 @@ public class CommandLineUI implements UI {
 				scanner.nextLine();
 
 				System.out.println();
-				if (choice <= 0) {
-					invalidMessage = "Number of enemies can't be lower or equal to 0!";
+				if (choice <= 0 || choice > 5) {
+					invalidMessage = "Number of enemies can't be lower than 0 or more than 5!";
 				} else {
 					return choice;
 				}
