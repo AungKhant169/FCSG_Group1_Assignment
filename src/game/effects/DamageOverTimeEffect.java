@@ -3,9 +3,9 @@ package game.effects;
 import game.entities.Combatant;
 import game.ui.UI;
 
-public class PoisonEffect extends Debuff {
-	public PoisonEffect() {
-		super("Poison", 3);
+public class DamageOverTimeEffect extends Debuff {
+	public DamageOverTimeEffect(String Name, int cooldown) {
+		super(Name, cooldown);
 	}
 
 	public void inflectDamage(Combatant c, UI ui) {
@@ -14,6 +14,6 @@ public class PoisonEffect extends Debuff {
 		c.takeDamage(10);
 		statusDamageMessage = statusDamageMessage + c.getCurrentHp()+" ";
 //		ui.displayActionResult(statusDamageMessage);
-        ui.displayActionResult("takes poison damage", c, null, "", statusDamageMessage);
+        ui.displayActionResult("takes "+this.getName()+" damage", c, null, "", statusDamageMessage);
 	}
 }

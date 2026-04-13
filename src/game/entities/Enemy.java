@@ -3,7 +3,7 @@ import java.util.Random;
 
 import game.actions.BasicAttack;
 import game.core.BattleContext;
-import game.effects.PoisonEffect;
+import game.effects.DamageOverTimeEffect;
 
 public abstract class Enemy extends Combatant {
 
@@ -34,7 +34,7 @@ public abstract class Enemy extends Combatant {
 			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
 	    	bc.getUI().displayActionResult("Poison -> " + target.getName(), this, null, "", "");
-	    	target.addStatusEffect(new PoisonEffect());
+	    	target.addStatusEffect(new DamageOverTimeEffect("Poison", 3));
 		}
 	}
 	
