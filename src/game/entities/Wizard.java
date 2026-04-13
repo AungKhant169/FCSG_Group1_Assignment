@@ -1,7 +1,6 @@
 package game.entities;
 import game.actions.ArcaneBlastSkill;
 import game.core.BattleContext;
-import game.ui.UI;
 
 public class Wizard extends Player {
 

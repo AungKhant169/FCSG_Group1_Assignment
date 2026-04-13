@@ -18,7 +18,7 @@ public class Necromancer extends Player {
 
         SingleTargetAction res = new ResurrectionSkill();
         Combatant target = res.pickTarget(bc);
-        res.execute(this, target, bc.getUI(), bc);
+        res.execute(this, target, bc);
         if (!cdReset){
             this.setCurrentCooldown(this.getSpecialSkillCooldown());
         }

@@ -8,13 +8,13 @@ import game.ui.UI;
 
 public class BattleContext {
 	private Combatant player;
-	private List<Combatant> allies = new ArrayList<>();
+	private List<Combatant> allies;
     private List<Enemy> enemies;
     private UI ui;
     
 	public BattleContext(Combatant player, List<Enemy> enemies, UI ui) {
-		super();
 		this.player = player;
+		this.allies = new ArrayList<>();
 		this.enemies = enemies;
 		this.ui = ui;
 	}

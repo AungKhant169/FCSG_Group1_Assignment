@@ -13,7 +13,7 @@ public class ArcaneBlastSkill implements Action {
         int kills = 0;
         ui.displayActionResult("Arcane Blast", wizard, null, "", "");
 
-        BasicAttack basicAttack = new BasicAttack() ;
+        SingleTargetAction basicAttack = new BasicAttack() ;
 
         for (Enemy enemy : enemyList){
             if (!enemy.isAlive()) continue;

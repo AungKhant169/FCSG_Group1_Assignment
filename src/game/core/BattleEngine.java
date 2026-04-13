@@ -1,4 +1,5 @@
 package game.core;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class BattleEngine {
 	private UI ui;
 	private int roundCount;
 	private boolean isLevelWon;
+	private BattleContext bc;
 
 	public BattleEngine(UI ui) {
 		this.ui = ui;
@@ -23,49 +25,52 @@ public class BattleEngine {
 
 	public void run(Combatant player, Level level) {
 		List<Enemy> enemies = level.getInitialWave();
-		BattleContext bc = new BattleContext(player, enemies, ui);
+		this.bc = new BattleContext(player, enemies, ui);
 
-		List<Combatant> orderedCombatant = getAllOrderedCombatants(player, enemies, bc);
+		List<Combatant> orderedCombatant = getAllOrderedCombatants();
 		to.displayOrder(new ArrayList<Combatant>(orderedCombatant));
 
 		while ((player.isAlive() || bc.hasLivingAllies()) && level.hasLivingEnemiesInitialW()) {
 			roundCount++;
 			ui.displayRoundStart(roundCount);
-			this.runRound(player, level.getLivingEnemiesInitialW(), bc);
+			this.bc.setEnemies(level.getLivingEnemiesInitialW());
+			this.runRound();
 		}
 		if (level.hasLivingEnemiesBackupW()) {
 			ui.printLine("BACK UP WAVE SPAWNED!");
 			enemies = level.getBackupWave();
 			bc.setEnemies(enemies);
-			orderedCombatant = getAllOrderedCombatants(player, enemies, bc);
+			orderedCombatant = getAllOrderedCombatants();
 			to.displayOrder(new ArrayList<Combatant>(orderedCombatant));
-			while ((player.isAlive() || bc.hasLivingAllies()) && !level.hasLivingEnemiesInitialW() && level.hasLivingEnemiesBackupW()) {
+			while ((player.isAlive() || bc.hasLivingAllies()) && !level.hasLivingEnemiesInitialW()
+					&& level.hasLivingEnemiesBackupW()) {
 				roundCount++;
 				ui.displayRoundStart(roundCount);
-				this.runRound(player, level.getLivingEnemiesBackupW(), bc);
+				this.bc.setEnemies(level.getLivingEnemiesBackupW());
+				this.runRound();
 			}
 		}
-		this.isLevelWon = player.isAlive() || bc.hasLivingAllies();
+		this.isLevelWon = player.isAlive() || this.bc.hasLivingAllies();
 	}
 
-	private void runRound(Combatant player, List<Enemy> enemies, BattleContext bc) {
+	private void runRound() {
 
-		List<Combatant> orderedCombatant = getAllOrderedCombatants(player, enemies, bc);
+		List<Combatant> orderedCombatant = getAllOrderedCombatants();
 		for (Combatant c : orderedCombatant) {
-			executeTurn(c,bc);
+			executeTurn(c);
 		}
-		for (Combatant c: orderedCombatant) {
+		for (Combatant c : orderedCombatant) {
 			c.reduceEffectDurations();
 			c.removeExpiredEffects();
 			c.reduceSpecialSkillCooldown();
 		}
 
-		bc.getAllies().removeIf(ally -> !ally.isAlive());
+		this.bc.getAllies().removeIf(ally -> !ally.isAlive());
 
 		ui.displayRoundSummary(orderedCombatant);
 	}
 
-	private void executeTurn(Combatant c, BattleContext bc) {
+	private void executeTurn(Combatant c) {
 		if (!c.isAlive())
 			return;
 		boolean turnSkip = false;
@@ -81,25 +86,25 @@ public class BattleEngine {
 		}
 
 		if (!turnSkip) {
-			c.performAction(bc);
+			c.performAction(this.bc);
 		} else {
 			ui.displayStunned(c.getName());
 		}
 	}
 
-	private ArrayList<Combatant> getAllOrderedCombatants(Combatant player, List<Enemy> enemies, BattleContext bc) {
+	private ArrayList<Combatant> getAllOrderedCombatants() {
 
-		ArrayList<Combatant> allCombatants = new ArrayList<>(enemies);
-		allCombatants.add(player);
-		allCombatants.addAll(bc.getAllies());
+		ArrayList<Combatant> allCombatants = new ArrayList<>(this.bc.getEnemies());
+		allCombatants.add(this.bc.getPlayer());
+		allCombatants.addAll(this.bc.getAllies());
 		return to.getTurnsBasedOnSpeed(allCombatants);
 
 	}
-	
+
 	public int getTotalRound() {
 		return roundCount;
 	}
-	
+
 	public boolean getIsLevelWon() {
 		return isLevelWon;
 	}
