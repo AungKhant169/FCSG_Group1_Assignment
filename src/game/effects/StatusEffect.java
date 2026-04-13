@@ -8,7 +8,6 @@ public class StatusEffect {
 	private int duration;
 
 	public StatusEffect(String name, int duration) {
-		super();
 		this.name = name;
 		this.duration = duration;
 	}
@@ -39,9 +38,6 @@ public class StatusEffect {
 
 	public int modifyDefense() {
 		return 0;
-	};
-
-	public void modifySpeed(Combatant combatant) {
 	};
 
 	public boolean stopTurn() {
