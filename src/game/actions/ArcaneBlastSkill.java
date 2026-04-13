@@ -11,7 +11,7 @@ public class ArcaneBlastSkill implements Action {
     @Override
     public void execute(Combatant wizard, List<Enemy> enemyList, UI ui){
         int kills = 0;
-ui.displayActionResult("Arcane Blast", wizard, null, "", "");
+        ui.displayActionResult("Arcane Blast", wizard, null, "", "");
 
         BasicAttack basicAttack = new BasicAttack() ;
 
