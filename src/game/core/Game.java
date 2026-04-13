@@ -6,6 +6,7 @@ import game.entities.Combatant;
 import game.entities.Warrior;
 import game.entities.Wizard;
 import game.entities.Necromancer;
+import game.items.PoisonDart;
 import game.items.Potion;
 import game.items.PowerStone;
 import game.items.SmokeBomb;
@@ -107,6 +108,8 @@ public class Game {
 				this.player.addItem(new SmokeBomb());
 			} else if (i == 3) {
 				this.player.addItem(new PowerStone());
+			} else if (i == 4) {
+				this.player.addItem(new PoisonDart());
 			}
 		}
 	}

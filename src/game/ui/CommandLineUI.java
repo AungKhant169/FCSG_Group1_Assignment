@@ -188,6 +188,8 @@ public class CommandLineUI implements UI {
 				CYAN + "║" + RESET + "  " + BLUE + "2. 💨 Smoke Bomb" + RESET + "   — Enemy deals 0 dmg for 2 turns");
 		System.out.println(CYAN + "║" + RESET + "  " + PURPLE + "3. 💎 Power Stone" + RESET
 				+ "  — Trigger special skill for free");
+		System.out.println(CYAN + "║" + RESET + "  " + WHITE + "4. Poison Dart" + RESET
+				+ "  — Poison selected target, deals 10 damage per turn for 3 turns");
 		System.out.println(CYAN + "║" + RESET);
 		System.out.println(CYAN + "║" + RESET + "  " + YELLOW + "Pick 2 items. Duplicates allowed!" + RESET);
 		System.out.println(CYAN + "║" + RESET);
@@ -196,12 +198,12 @@ public class CommandLineUI implements UI {
 		List<Integer> items = new ArrayList<>();
 		for (int i = 1; i <= 2; i++) {
 			while (true) {
-				System.out.print(BOLD + "  Select for Item " + i + " (1-3): " + RESET);
+				System.out.print(BOLD + "  Select for Item " + i + " (1-4): " + RESET);
 
 				if (scanner.hasNextInt()) {
 					int choice = scanner.nextInt();
 					scanner.nextLine();
-					if (choice >= 1 && choice <= 3) {
+					if (choice >= 1 && choice <= 4) {
 						items.add(choice);
 						break;
 					}
@@ -209,7 +211,7 @@ public class CommandLineUI implements UI {
 					scanner.next();
 				}
 
-				invalidInput("Invalid item! Enter 1-3.");
+				invalidInput("Invalid item! Enter 1-4.");
 			}
 		}
 		return items;
@@ -658,7 +660,6 @@ public class CommandLineUI implements UI {
 		System.out.println();
 		System.out.println(YELLOW + BOLD + "  Who would you like to attack?" + RESET);
 
-		int targetIndex = -1;
 		for (int i = 0; i < enemies.size(); i++) {
 			Enemy c = enemies.get(i);
 			if (c.isAlive()) {

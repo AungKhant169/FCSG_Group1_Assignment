@@ -34,7 +34,7 @@ public abstract class Enemy extends Combatant {
 			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
 	    	bc.getUI().displayActionResult("Poison -> " + target.getName(), this, null, "", "");
-	    	target.addStatusEffect(new DamageOverTimeEffect("Poison", 3));
+	    	target.addStatusEffect(new DamageOverTimeEffect("Poison", 3, 10));
 		}
 	}
 	

@@ -7,7 +7,7 @@ import game.entities.Combatant;
 public class PowerStone extends Item {
 
     public PowerStone() {
-        super("💎 Power Stone", "Power Stone does not affect cooldown) ", 1);
+        super("💎 Power Stone", "Power Stone does not affect cooldown ", 1);
     }
 
     @Override
