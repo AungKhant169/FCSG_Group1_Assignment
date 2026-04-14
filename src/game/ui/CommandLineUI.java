@@ -188,7 +188,7 @@ public class CommandLineUI implements UI {
 				CYAN + "║" + RESET + "  " + BLUE + "2. 💨 Smoke Bomb" + RESET + "   — Enemy deals 0 dmg for 2 turns");
 		System.out.println(CYAN + "║" + RESET + "  " + PURPLE + "3. 💎 Power Stone" + RESET
 				+ "  — Trigger special skill for free");
-		System.out.println(CYAN + "║" + RESET + "  " + WHITE + "4. Poison Dart" + RESET
+		System.out.println(CYAN + "║" + RESET + "  " + WHITE + "4. 🎯 Poison Dart" + RESET
 				+ "  — Poison selected target, deals 10 damage per turn for 3 turns");
 		System.out.println(CYAN + "║" + RESET);
 		System.out.println(CYAN + "║" + RESET + "  " + YELLOW + "Pick 2 items. Duplicates allowed!" + RESET);
