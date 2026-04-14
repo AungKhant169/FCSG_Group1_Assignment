@@ -8,7 +8,7 @@ import game.entities.Combatant;
 public class PoisonDart extends Item{
 
 	public PoisonDart() {
-		super("Poison Dart", "Poisons selected target for 3 turns", 1);
+		super("🎯 Poison Dart", "Poisons selected target for 3 turns", 1);
 	}
 	
     @Override
