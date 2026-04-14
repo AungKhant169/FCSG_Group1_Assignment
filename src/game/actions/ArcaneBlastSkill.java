@@ -24,7 +24,8 @@ public class ArcaneBlastSkill implements Action {
         if (kills > 0) {
             wizard.addStatusEffect(new ATKBoostEffect(kills * 10));
             
-            String display = "Attack Boosted: From "+ wizard.getTotalAttack() + " + " + (kills * 10);
+//            String display = "Attack Boosted: From "+ wizard.getBaseAttack() + " + " + (wizard.getTotalAttack()-wizard.getBaseAttack());
+            String display = "Attack Boosted by "+ (kills*10) + " Total Attack: " + wizard.getTotalAttack();
             ui.displayActionResult("", wizard, null, "", display);
         }
     }
