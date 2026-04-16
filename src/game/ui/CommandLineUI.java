@@ -3,7 +3,10 @@ package game.ui;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
+import game.effects.StatusEffect;
 import game.entities.Combatant;
 import game.entities.Enemy;
 import game.items.Item;
@@ -49,11 +52,8 @@ public class CommandLineUI implements UI {
 	}
 
 	private void sleep(int ms) {
-//        try { Thread.sleep(ms); } catch (InterruptedException e) {}
-		try {
-			Thread.sleep(2);
-		} catch (InterruptedException e) {
-		}
+		try { Thread.sleep(ms); } catch (InterruptedException e) {Thread.currentThread().interrupt();} // For actual implementation
+		//try { Thread.sleep(	2); } catch (InterruptedException e) {Thread.currentThread().interrupt();} // For testing purposes
 	}
 
 	private void typeWrite(String text, int delayMs) {
@@ -97,7 +97,7 @@ public class CommandLineUI implements UI {
 		clearScreen();
 		sleep(200);
 		System.out.println(RED + BOLD);
-		typeWrite("  ██████╗ ██████╗ ███╗   ███╗██████╗  █████╗ ████████╗", 5);
+		typeWrite("   █████╗  ██████╗ ███╗   ███╗██████╗  █████╗ ████████╗", 5);
 		typeWrite("  ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗╚══██╔══╝", 5);
 		typeWrite("  ██║     ██║   ██║██╔████╔██║██████╔╝███████║   ██║   ", 5);
 		typeWrite("  ██║     ██║   ██║██║╚██╔╝██║██╔══██╗██╔══██║   ██║   ", 5);
@@ -105,9 +105,9 @@ public class CommandLineUI implements UI {
 		typeWrite("   ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   ", 5);
 		System.out.println(RESET);
 		System.out.println(YELLOW + BOLD);
-		typeWrite("        ⚔   A R E N A   ⚔", 15);
+		typeWrite("                 ⚔   A R E N A   ⚔", 15);
 		System.out.println(RESET);
-		System.out.println(PURPLE + "          Turn-Based Combat — Fight or Die" + RESET);
+		System.out.println(PURPLE + "           Turn-Based Combat — Fight or Die" + RESET);
 		System.out.println();
 		sleep(500);
 		System.out.print(CYAN + "  Press ENTER to begin your journey..." + RESET);
@@ -121,11 +121,11 @@ public class CommandLineUI implements UI {
 		while (true) {
 			clearScreen();
 			printDivider();
-			System.out.println(CYAN + "║" + BOLD + YELLOW + "        ⚔  CHOOSE YOUR FIGHTER  ⚔         " + RESET + CYAN
+			System.out.println(CYAN + "║" + BOLD + YELLOW + "            ⚔  CHOOSE YOUR FIGHTER  ⚔             " + RESET + CYAN
 					+ "║" + RESET);
 			System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
 			System.out.println(CYAN + "║" + RESET);
-			System.out.println(CYAN + "║  " + BOLD + RED + "1. ⚔  WARRIOR" + RESET);
+			System.out.println(CYAN + "║  " + BOLD + RED + "1. 🤺  WARRIOR" + RESET);
 			System.out.println(CYAN + "║" + RESET + "     HP: 260  ATK: 40  DEF: 20  SPD: 30");
 			System.out.println(
 					CYAN + "║" + RESET + "     " + GREEN + "➤ Shield Bash" + RESET + " — Stuns enemy for 2 turns.");
@@ -137,10 +137,10 @@ public class CommandLineUI implements UI {
 					+ " — Hits ALL enemies, +10 ATK per kill.");
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Fragile but DEVASTATING\"" + RESET);
 			System.out.println(CYAN + "║" + RESET);
-			System.out.println(CYAN + "║  " + BOLD + BLUE + "3. 💀 NECROMANCER" + RESET);
+			System.out.println(CYAN + "║  " + BOLD + BLUE + "3. 🧝 NECROMANCER" + RESET);
 			System.out.println(CYAN + "║" + RESET + "     HP: 200  ATK: 40  DEF: 15  SPD: 25");
 			System.out.println(
-					CYAN + "║" + RESET + "     " + GREEN + "➤ Resurrection" + RESET + " — Summons skeleton attacking lowest-HP enemy.");
+					CYAN + "║" + RESET + "     " + GREEN + "➤ Resurrection" + RESET + " — Spawns skeleton → lowest HP target.");
 			System.out.println(CYAN + "║" + RESET + "     " + YELLOW + "\"Slow but RELENTLESS\"" + RESET);
 			System.out.println(CYAN + "║" + RESET);
 			printDividerBottom();
@@ -162,11 +162,11 @@ public class CommandLineUI implements UI {
 	public void displaySelectedClass(int choice) {
 		String className;
 		if (choice == 1) {
-			className = "⚔ WARRIOR";
+			className = "🤺 WARRIOR";
 		} else if (choice == 2) {
 			className = "🧙 WIZARD";
 		} else {
-			className = "💀 NECROMANCER";
+			className = "🧝 NECROMANCER";
 		}
 
 		System.out.println();
@@ -179,7 +179,7 @@ public class CommandLineUI implements UI {
 	public List<Integer> selectItems() {
 		clearScreen();
 		printDivider();
-		System.out.println(CYAN + "║" + BOLD + YELLOW + "          🎒  CHOOSE YOUR ITEMS  🎒          " + RESET + CYAN
+		System.out.println(CYAN + "║" + BOLD + YELLOW + "             🎒  CHOOSE YOUR ITEMS  🎒            " + RESET + CYAN
 				+ "║" + RESET);
 		System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
 		System.out.println(
@@ -188,10 +188,10 @@ public class CommandLineUI implements UI {
 				CYAN + "║" + RESET + "  " + BLUE + "2. 💨 Smoke Bomb" + RESET + "   — Enemy deals 0 dmg for 2 turns");
 		System.out.println(CYAN + "║" + RESET + "  " + PURPLE + "3. 💎 Power Stone" + RESET
 				+ "  — Trigger special skill for free");
-		System.out.println(CYAN + "║" + RESET + "  " + WHITE + "4. 🎯 Poison Dart" + RESET
-				+ "  — Poison selected target, deals 10 damage per turn for 3 turns");
+		System.out.println(CYAN + "║" + RESET + "  " + RED + "4. 🎯 Poison Dart" + RESET
+				+ "  — Deals 10 damage per turn for 3 turns");
 		System.out.println(CYAN + "║" + RESET);
-		System.out.println(CYAN + "║" + RESET + "  " + YELLOW + "Pick 2 items. Duplicates allowed!" + RESET);
+		System.out.println(CYAN + "║" + RESET + "  " + YELLOW + "Pick 2 items. Duplicates are allowed!" + RESET);
 		System.out.println(CYAN + "║" + RESET);
 		printDividerBottom();
 
@@ -229,6 +229,8 @@ public class CommandLineUI implements UI {
 				name = "💨 Smoke Bomb";
 			else if (item == 3)
 				name = "💎 Power Stone";
+			else if (item == 4)
+				name = "🎯 Poison Dart";
 
 			System.out.println("     ➤ " + name);
 		}
@@ -242,7 +244,7 @@ public class CommandLineUI implements UI {
 		while (true) {
 			clearScreen();
 			printDivider();
-			System.out.println(CYAN + "║" + BOLD + YELLOW + "         🗺  SELECT DIFFICULTY  🗺          " + RESET
+			System.out.println(CYAN + "║" + BOLD + YELLOW + "             🗺  SELECT DIFFICULTY  🗺              " + RESET
 					+ CYAN + "║" + RESET);
 			System.out.println(CYAN + "╠══════════════════════════════════════════════════╣" + RESET);
 			System.out.println(CYAN + "║" + RESET + "  1. EASY");
@@ -311,7 +313,7 @@ public class CommandLineUI implements UI {
 			actionName = "👊 Basic Attack";
 			break;
 		case 2:
-			actionName = "🛡 Defend";
+			actionName = "🛡️ Defend";
 			break;
 		case 3:
 			actionName = "🎒 Use Item";
@@ -354,27 +356,27 @@ public class CommandLineUI implements UI {
 		System.out.println();
 		System.out.println(PURPLE + "  ┌─────────────────────────────────────┐" + RESET);
 		System.out.println(
-				PURPLE + "  │" + BOLD + YELLOW + "          ⚔  YOUR TURN! ⚔           " + RESET + PURPLE + "│" + RESET);
+				PURPLE + "  │" + BOLD + YELLOW + "           ⚔  YOUR TURN! ⚔           " + RESET + PURPLE + "│" + RESET);
 		System.out.println(PURPLE + "  ├─────────────────────────────────────┤" + RESET);
-		System.out.println(PURPLE + "  │ " + RESET + WHITE + "1. 👊 Basic Attack" + RESET + "                   "
+		System.out.println(PURPLE + "  │ " + RESET + WHITE + "1. 👊 Basic Attack" + RESET + "                  "
 				+ PURPLE + "│" + RESET);
-		System.out.println(PURPLE + "  │ " + RESET + BLUE + "2. 🛡  Defend" + RESET + "                        "
+		System.out.println(PURPLE + "  │ " + RESET + BLUE + "2. 🛡️  Defend" + RESET + "                        "
 				+ PURPLE + "│" + RESET);
 
 		if (player.hasItems()) {
-			System.out.println(PURPLE + "  │ " + RESET + GREEN + "3. 🎒 Use Item" + RESET + "                       "
+			System.out.println(PURPLE + "  │ " + RESET + GREEN + "3. 🎒 Use Item" + RESET + "                      "
 					+ PURPLE + "│" + RESET);
 		} else {
-			System.out.println(PURPLE + "  │ " + RESET + RED + "3. 🎒 Use Item (EMPTY)" + RESET + "               "
+			System.out.println(PURPLE + "  │ " + RESET + RED + "3. 🎒 Use Item (EMPTY)" + RESET + "                "
 					+ PURPLE + "│" + RESET);
 		}
 
 		if (player.isSkillReady()) {
-			System.out.println(PURPLE + "  │ " + RESET + YELLOW + "4. ✨ Special Skill (READY!)" + RESET + "         "
+			System.out.println(PURPLE + "  │ " + RESET + YELLOW + "4. ✨ Special Skill (READY!)" + RESET + "        "
 					+ PURPLE + "│" + RESET);
 		} else {
-			System.out.println(PURPLE + "  │ " + RESET + RED + "4. ✨ Special Skill (Cooldown: "
-					+ player.getCurrentCooldown() + " turns)" + RESET + " " + PURPLE + "│" + RESET);
+			System.out.println(PURPLE + "  │ " + RESET + RED + "4. ✨ Special Skill (CD: "
+					+ player.getCurrentCooldown() + " turns)   " + RESET + PURPLE + "│" + RESET);
 		}
 
 		System.out.println(PURPLE + "  └─────────────────────────────────────┘" + RESET);
@@ -387,43 +389,57 @@ public class CommandLineUI implements UI {
 
 	// ========== ACTION RESULT ==========
 
-	public void displayActionResult(String action, Combatant attacker, Combatant target, String damage, String hpChange) {
+	public void displayActionResult(String action, Combatant attacker, Combatant target, Integer damage, String hpChange) {
 		sleep(200);
-//	    System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
 
 		System.out.println();
-		if (attacker != null) {
-			String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
-			System.out.print(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET);
-			if (target != null) {
-				System.out.print(RED + " [ATTACKER] " + RESET);
+		if (attacker != null) { // When there is an attacker
+			String attackerStr = attacker.getEntityEmoji() + " " + attacker.getName();
+			System.out.print(attackerStr);
+
+			System.out.print(" [");
+			if(attacker.getStatusEffects().size() != 0){
+				for (StatusEffect effect : attacker.getStatusEffects()) {
+					int roundsLeft = effect.getDuration();  // rounds remaining
+					if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
+					else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
+				}
 			}
-			System.out
-					.print(attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
-			
+			System.out.print("]");
 		}
-		if (!action.equals("")) {
-			System.out.println(BOLD + " -> " + action + RESET);
+		
+		if (!action.equals("")) { // When there is action
+			System.out.print("     " + action + "     ");
 		} else {
 			System.out.println();
 		}
 
-		if (target != null) {
-			String bar = hpBar(target.getCurrentHp(), target.getMaxHp());
-			System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", target.getName()) + RESET + YELLOW
-					+ " [TARGET]   " + RESET + bar + " " + GREEN + target.getCurrentHp() + "/" + target.getMaxHp()
-					+ "HP" + RESET);
+		if (target != null) {  // when there is a target 
+			String targetStr = target.getEntityEmoji() + " " + target.getName();
+			System.out.print(targetStr);
 
+			System.out.print(" [");
+			if(target.getStatusEffects().size() != 0){
+				for (StatusEffect effect : target.getStatusEffects()) {
+					int roundsLeft = effect.getDuration();  // rounds remaining
+					if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
+					else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
+				}
+			}
+			System.out.print("]");
 		}
-		if (!hpChange.equals("")) {
-			System.out.println(CYAN + "  │ " + RESET + BOLD + hpChange + RESET);
-		}
-		if (!damage.equals("")) {
-			System.out.println(CYAN + "  │ " + RESET + BOLD + damage + RESET);
-		}
-//	    System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
+		
+		System.out.print(" | ");
 
-//		System.out.println(YELLOW + "  ➤ " + RESET + message);
+		if (!hpChange.equals("")) { // When there is hp change
+			System.out.print(hpChange);
+		}
+		
+		if (damage != null && damage > 0) { // When there is damage
+			System.out.print("(-" + damage + ")");
+		}
+
+		System.out.println();
 		sleep(300);
 	}
 
@@ -480,22 +496,22 @@ public class CommandLineUI implements UI {
 	public void displayLevelSummary(List<Combatant> combatants, int totalRounds) {
 		System.out.println();
 		System.out.println(CYAN + "  ┌────────────────────────────────────────────────┐" + RESET);
-		System.out.println(CYAN + "   " + BOLD + " 📊 LEVEL SUMMARY (Total Rounds: " + totalRounds + ")             "
+		System.out.println(CYAN + "   " + BOLD + "	📊 LEVEL SUMMARY (Total Rounds: " + totalRounds + ")             "
 				+ RESET + CYAN + "" + RESET);
 		System.out.println(CYAN + "  ├────────────────────────────────────────────────┤" + RESET);
 		for (Combatant c : combatants) {
 			if (c.isAlive()) {
 				String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
-				System.out.println(CYAN + "    " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET + " "
-						+ bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET);
+				typeWrite(CYAN + "    " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET + " "
+                		+ bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET, 8);
 			} else {
-				System.out.println(CYAN + "    " + RESET + RED + BOLD + String.format("%-12s", c.getName()) + RESET
-						+ RED + " ✗ ELIMINATED" + RESET);
+				typeWrite(CYAN + "    " + RESET + RED + BOLD + String.format("%-12s", c.getName()) + RESET
+                		+ RED + " ✗ ELIMINATED" + RESET, 8);
 			}
 			if (c.getItems().size() > 0) {
 				for (Item i : c.getItems()) {
-					System.out.println(CYAN + "    " + RESET + BOLD + String.format("%-20s", i.getName()) + RESET + " "
-							+ " " + GREEN + i.getCurrentUseCount() + RESET);
+					typeWrite(CYAN + "    " + RESET + BOLD + String.format("%-20s", i.getName()) + RESET + " "
+                    		+ " " + GREEN + i.getCurrentUseCount() + RESET, 8);
 				}
 			}
 		}
@@ -515,10 +531,10 @@ public class CommandLineUI implements UI {
 
 	// ========== STUNNED ==========
 
-	public void displayStunned(String name) {
-		System.out.println(PURPLE + "  💫 " + name + " is STUNNED — turn skipped!" + RESET);
-		sleep(300);
-	}
+	// public void displayStunned(String name) {
+	// 	System.out.println(PURPLE + "  💫 " + name + " is STUNNED — turn skipped!" + RESET);
+	// 	sleep(300);
+	// }
 
 	// ========== VICTORY ==========
 

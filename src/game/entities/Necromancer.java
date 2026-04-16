@@ -20,4 +20,9 @@ public class Necromancer extends Player {
         }
         
     }
+
+    @Override
+    public String getEntityEmoji() {
+        return "🧝‍"; 
+    }
 }

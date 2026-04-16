@@ -16,4 +16,9 @@ public class ATKBoostEffect extends Buff {
     public boolean isExpired() {
         return false;
     }
+
+    @Override
+    public String getEffectEmoji() {
+        return "⚔️ ";
+    }
 }

@@ -14,5 +14,6 @@ public class PowerStone extends Item {
     public void use(Combatant user, BattleContext bc) {
         // Cast to Player — only players have special skills
     	user.specialSkill(bc, true);
+        bc.getUI().displayActionResult("uses 💎 Power Stone", user, null, null, "");
     }
 }

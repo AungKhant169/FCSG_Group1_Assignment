@@ -3,6 +3,7 @@ package game.items;
 import game.actions.SingleTargetAction;
 import game.core.BattleContext;
 import game.effects.DamageOverTimeEffect;
+import game.effects.PoisonEffect;
 import game.entities.Combatant;
 
 public class PoisonDart extends Item{
@@ -15,7 +16,7 @@ public class PoisonDart extends Item{
     public void use(Combatant user, BattleContext bc) {
     	SingleTargetAction sta = new SingleTargetAction();
     	Combatant target = sta.pickTarget(bc);
-    	bc.getUI().displayActionResult("Poison Dart -> " + target.getName(), user, null, "", "");
-    	target.addStatusEffect(new DamageOverTimeEffect("Poison", 3, 10));
+    	bc.getUI().displayActionResult("uses 🎯 Poison Dart on " + target.getName(), user, null, null, "");
+    	target.addStatusEffect(new PoisonEffect("Poison", 3, 10));
     }
 }

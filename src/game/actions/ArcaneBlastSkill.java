@@ -11,7 +11,7 @@ public class ArcaneBlastSkill implements Action {
     @Override
     public void execute(Combatant wizard, List<Enemy> enemyList, UI ui){
         int kills = 0;
-        ui.displayActionResult("Arcane Blast", wizard, null, "", "");
+        ui.displayActionResult("🫴 ✨", wizard, null, null, "");
 
         SingleTargetAction basicAttack = new BasicAttack() ;
 
@@ -25,8 +25,7 @@ public class ArcaneBlastSkill implements Action {
             wizard.addStatusEffect(new ATKBoostEffect(kills * 10));
             
 //            String display = "Attack Boosted: From "+ wizard.getBaseAttack() + " + " + (wizard.getTotalAttack()-wizard.getBaseAttack());
-            String display = "Attack Boosted by "+ (kills*10) + " Total Attack: " + wizard.getTotalAttack();
-            ui.displayActionResult("", wizard, null, "", display);
+            ui.displayActionResult("Atk ⚔️ ⬆️  by "+ (kills*10) , wizard, null, null, "");
         }
     }
 }
