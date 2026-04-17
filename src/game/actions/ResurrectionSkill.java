@@ -8,7 +8,7 @@ public class ResurrectionSkill extends SingleTargetAction{
     
     @Override
     public void execute(Combatant necromancer, Combatant enemy, BattleContext bc) {
-    	bc.getUI().displayActionResult("Resurrection", necromancer, null, "", "");
+    	bc.getUI().displayActionResult("🫴 ✨", necromancer, null, null , "");
         
         SingleTargetAction basicAttack = new BasicAttack();
         basicAttack.execute(necromancer, enemy, bc.getUI());

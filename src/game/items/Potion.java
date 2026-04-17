@@ -12,10 +12,9 @@ public class Potion extends Item {
 
     @Override
     public void use(Combatant user, BattleContext bc) {
-    	String display = "Healed HP: From " + user.getCurrentHp() + " -> To ";
+    	String display = "HP⬆️ : " + user.getCurrentHp() + " → ";
         user.increaseHP(HEAL_AMOUNT);
         display = display + user.getCurrentHp();
-        bc.getUI().displayActionResult("", user, null, "", display);
-
+        bc.getUI().displayActionResult("uses 🧪 Potion", user, null, null, display);
     }
 }

@@ -11,4 +11,9 @@ public class DefendEffect extends Buff {
     public int modifyDefense() {
     	return boostAmount;
     }
+
+    @Override
+    public String getEffectEmoji() {
+        return "🛡️"; 
+    }
 }

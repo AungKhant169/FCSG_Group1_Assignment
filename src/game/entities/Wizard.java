@@ -14,4 +14,9 @@ public class Wizard extends Player {
 			this.setCurrentCooldown(this.getSpecialSkillCooldown());
 		}
 	}
+
+	@Override
+	public String getEntityEmoji() {
+		return "🧙"; 
+	}
 }

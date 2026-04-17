@@ -14,5 +14,6 @@ public class SmokeBomb extends Item {
         // Apply SmokeBombInvulnerability status effect to the user for 2 turns
         user.addStatusEffect(new SmokeBombInvulnerability());
 //        System.out.println(user.getName() + " Enemy attacks deal 0 damage this turn + next");
+        bc.getUI().displayActionResult("uses 💨 Smoke Bomb", user, null, null, "");
     }
 }

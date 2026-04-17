@@ -75,7 +75,7 @@ public class BattleEngine {
 			return;
 		boolean turnSkip = false;
 		for (StatusEffect effect : c.getStatusEffects()) {
-			effect.inflectDamage(c, ui);
+			effect.inflictDamage(c, ui);
 			if (!c.isAlive()) {
 				return;
 			}
@@ -87,7 +87,7 @@ public class BattleEngine {
 
 		if (!turnSkip) {
 			c.performAction(this.bc);
-		} else {
+		} else { 
 			ui.displayStunned(c.getName());
 		}
 	}

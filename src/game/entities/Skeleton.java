@@ -25,4 +25,9 @@ public class Skeleton extends Player {
         SingleTargetAction basicAttack = new BasicAttack();
         basicAttack.execute(this, target, bc.getUI());
     }
+
+    @Override
+    public String getEntityEmoji() {
+        return "💀"; 
+    }
 }
