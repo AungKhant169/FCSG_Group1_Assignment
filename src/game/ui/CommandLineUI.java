@@ -502,16 +502,16 @@ public class CommandLineUI implements UI {
 		for (Combatant c : combatants) {
 			if (c.isAlive()) {
 				String bar = hpBar(c.getCurrentHp(), c.getMaxHp());
-				typeWrite(CYAN + "    " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET + " "
-                		+ bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET, 8);
+				System.out.println(CYAN + "    " + RESET + BOLD + String.format("%-12s", c.getName()) + RESET + " "
+                		+ bar + " " + GREEN + c.getCurrentHp() + "/" + c.getMaxHp() + "HP" + RESET);
 			} else {
-				typeWrite(CYAN + "    " + RESET + RED + BOLD + String.format("%-12s", c.getName()) + RESET
-                		+ RED + " ✗ ELIMINATED" + RESET, 8);
+				System.out.println(CYAN + "    " + RESET + RED + BOLD + String.format("%-12s", c.getName()) + RESET
+                		+ RED + " ✗ ELIMINATED" + RESET);
 			}
 			if (c.getItems().size() > 0) {
 				for (Item i : c.getItems()) {
-					typeWrite(CYAN + "    " + RESET + BOLD + String.format("%-20s", i.getName()) + RESET + " "
-                    		+ " " + GREEN + i.getCurrentUseCount() + RESET, 8);
+					System.out.println(CYAN + "    " + RESET + BOLD + String.format("%-20s", i.getName()) + RESET + " "
+                    		+ " " + GREEN + i.getCurrentUseCount() + RESET);
 				}
 			}
 		}
