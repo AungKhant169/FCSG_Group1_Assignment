@@ -394,18 +394,7 @@ public class CommandLineUI implements UI {
 
 		System.out.println();
 		if (attacker != null) { // When there is an attacker
-			String attackerStr = attacker.getEntityEmoji() + " " + attacker.getName();
-			System.out.print(attackerStr);
-
-			System.out.print(" [");
-			if(attacker.getStatusEffects().size() != 0){
-				for (StatusEffect effect : attacker.getStatusEffects()) {
-					int roundsLeft = effect.getDuration();  // rounds remaining
-					if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
-					else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
-				}
-			}
-			System.out.print("]");
+			displayCombatantAndStatusEffects(attacker);
 		}
 		
 		if (!action.equals("")) { // When there is action
@@ -415,34 +404,37 @@ public class CommandLineUI implements UI {
 		}
 
 		if (target != null) {  // when there is a target 
-			String targetStr = target.getEntityEmoji() + " " + target.getName();
-			System.out.print(targetStr);
-
-			System.out.print(" [");
-			if(target.getStatusEffects().size() != 0){
-				for (StatusEffect effect : target.getStatusEffects()) {
-					int roundsLeft = effect.getDuration();  // rounds remaining
-					if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
-					else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
-				}
-			}
-			System.out.print("]");
+			displayCombatantAndStatusEffects(target);
 		}
-		
-		System.out.print(" | ");
 
 		if (!hpChange.equals("")) { // When there is hp change
+			System.out.print(" | ");
 			System.out.print(hpChange);
 		}
 		
 		if (damage != null && damage > 0) { // When there is damage
-			System.out.print("(-" + damage + ")");
+			System.out.println("(-" + damage + ")");
 		}
-
+		
 		System.out.println();
 		sleep(300);
 	}
 
+	// ========== Displays Combatant + Status Effects ==========
+	public void displayCombatantAndStatusEffects(Combatant c){
+		String targetStr = c.getEntityEmoji() + " " + c.getName();
+		System.out.print(targetStr);
+
+		System.out.print(" [");
+		if(c.getStatusEffects().size() != 0){
+			for (StatusEffect effect : c.getStatusEffects()) {
+				int roundsLeft = effect.getDuration();  // rounds remaining
+				if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
+				else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
+			}
+		}
+		System.out.print("]");
+	}
 
 	// ========== ROUND SUMMARY ==========
 
@@ -466,32 +458,32 @@ public class CommandLineUI implements UI {
 		sleep(500);
 	}
 
-	//to display the hp bars 
-	public void displayCombatHpUpdate(Combatant attacker, List<Combatant> targets) {
-    sleep(150);
-    System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
+// 	//to display the hp bars 
+// 	public void displayCombatHpUpdate(Combatant attacker, List<Combatant> targets) {
+//     sleep(150);
+//     System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
     
-    // show attacker HP with ATTACKER label
-    String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
-    System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET
-            + RED + " [ATTACKER] " + RESET
-            + attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
+//     // show attacker HP with ATTACKER label
+//     String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
+//     System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET
+//             + RED + " [ATTACKER] " + RESET
+//             + attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
     
-    // show all targets HP with TARGET label
-    for (Combatant t : targets) {
-        String bar = hpBar(t.getCurrentHp(), t.getMaxHp());
-        System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", t.getName()) + RESET
-                + YELLOW + " [TARGET]   " + RESET
-                + bar + " " + GREEN + t.getCurrentHp() + "/" + t.getMaxHp() + "HP" + RESET);
-    }
+//     // show all targets HP with TARGET label
+//     for (Combatant t : targets) {
+//         String bar = hpBar(t.getCurrentHp(), t.getMaxHp());
+//         System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", t.getName()) + RESET
+//                 + YELLOW + " [TARGET]   " + RESET
+//                 + bar + " " + GREEN + t.getCurrentHp() + "/" + t.getMaxHp() + "HP" + RESET);
+//     }
     
-    System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
-    sleep(300);
-}
+//     System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
+//     sleep(300);
+// }
 
 
 
-	// ========== LEVEL SUMMARY ==========
+	// ========== LEVEL SUMMARY ==========	
 
 	public void displayLevelSummary(List<Combatant> combatants, int totalRounds) {
 		System.out.println();
@@ -531,10 +523,11 @@ public class CommandLineUI implements UI {
 
 	// ========== STUNNED ==========
 
-	// public void displayStunned(String name) {
-	// 	System.out.println(PURPLE + "  💫 " + name + " is STUNNED — turn skipped!" + RESET);
-	// 	sleep(300);
-	// }
+	public void displayStunned(Combatant c) {
+		displayCombatantAndStatusEffects(c);
+		System.out.println("  is stunned 😵💫  →  turn skipped!" + RESET);
+		sleep(300);
+	}
 
 	// ========== VICTORY ==========
 

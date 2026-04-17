@@ -13,6 +13,6 @@ public class Goblin extends Enemy {
 
 	@Override
 	public String getEntityEmoji() {
-		return "🧌"; 
+		return "🧌 "; 
 	}
 }

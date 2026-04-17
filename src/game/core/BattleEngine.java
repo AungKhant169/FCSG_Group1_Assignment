@@ -87,6 +87,8 @@ public class BattleEngine {
 
 		if (!turnSkip) {
 			c.performAction(this.bc);
+		} else {
+			ui.displayStunned(c);
 		} 
 	}
 

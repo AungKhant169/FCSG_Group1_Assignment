@@ -8,10 +8,12 @@ public class ShieldBashSkill extends SingleTargetAction {
     @Override
     public void execute(Combatant warrior, Combatant target, UI ui) {
         String display = target.getEntityEmoji() + " " + target.getName() + " Stunned 💫";
-        ui.displayActionResult("🫴 ✨", warrior, target, warrior.getBaseAttack(), display);
+        ui.displayActionResult("🫴 ✨", warrior, target, null , display);
+        target.addStatusEffect(new StunEffect());
+
         SingleTargetAction basicAttack = new BasicAttack() ;
         basicAttack.execute(warrior, target, ui);
-        target.addStatusEffect(new StunEffect());
+        
     }
 
 }

@@ -42,7 +42,7 @@ public void displayActionResult(String message, Combatant a, Combatant t, Intege
 
 	public void displayBackupSpawn();
 
-	// public void displayStunned(String name);
+	public void displayStunned(Combatant c);
 
 	public void displayVictory();
 
