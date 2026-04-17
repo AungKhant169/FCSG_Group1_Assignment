@@ -56,7 +56,7 @@ public class StatusEffect {
 		return damage;
 	};
 	
-	public void inflictDamage(Combatant c, UI ui, String emoji) {
+	public void inflictDamage(Combatant c, UI ui) {
 	}
 
 	public String getEffectEmoji() {
