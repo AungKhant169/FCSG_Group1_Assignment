@@ -3,7 +3,7 @@ package game.effects;
 import game.entities.Combatant;
 import game.ui.UI;
 
-public abstract class DamageOverTimeEffect extends Debuff {
+public class DamageOverTimeEffect extends Debuff {
 	private int dotDamage;
 	public DamageOverTimeEffect(String name, int duration, int dotDamage) {
 		super(name, duration);
@@ -20,5 +20,4 @@ public abstract class DamageOverTimeEffect extends Debuff {
 	public int getDotDamage() {
 		return this.dotDamage;
 	}
-	public abstract String getEffectEmoji();
 }
