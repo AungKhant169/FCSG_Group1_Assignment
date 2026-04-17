@@ -13,7 +13,7 @@ public class PowerStone extends Item {
     @Override
     public void use(Combatant user, BattleContext bc) {
         // Cast to Player — only players have special skills
-    	user.specialSkill(bc, true);
         bc.getUI().displayActionResult("uses 💎 Power Stone", user, null, null, "");
+    	user.specialSkill(bc, true);
     }
 }
