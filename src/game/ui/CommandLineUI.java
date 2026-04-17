@@ -531,10 +531,11 @@ public class CommandLineUI implements UI {
 
 	// ========== STUNNED ==========
 
-	// public void displayStunned(String name) {
-	// 	System.out.println(PURPLE + "  💫 " + name + " is STUNNED — turn skipped!" + RESET);
-	// 	sleep(300);
-	// }
+	public void displayStunned(String name) {
+		System.out.println();
+		System.out.println(PURPLE + "  💫 " + name + " is STUNNED — turn skipped!" + RESET);
+		sleep(300);
+	}
 
 	// ========== VICTORY ==========
 
