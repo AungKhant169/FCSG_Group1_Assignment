@@ -36,6 +36,8 @@ public class BasicAttack extends SingleTargetAction {
 			display = display + se.stream().collect(Collectors.joining(", ")) + ")";
 		}
 		ui.displayActionResult("🤜💥", attacker, target, damage, display);
-
+		if (!target.isAlive()) {
+			ui.displayActionResult(" ✗ ELIMINATED", target, null, 0,"");
+		}
 	}
 }
