@@ -37,14 +37,16 @@ public abstract class Enemy extends Combatant {
 			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
 			boolean skip_invulnerability = false;
+			String effectName = "";
 			for (StatusEffect effect : target.getStatusEffects()){
-				if (effect instanceof SmokeBombInvulnerability){
+				if (effect.blockInDamage()){
+					effectName = effect.getName();
 					skip_invulnerability = true;
 					break;
 				}
 			}
 	    	if (skip_invulnerability) {
-				bc.getUI().displayActionResult("🫴 ☣️", this, target, null, "but it was missed due to Smoke Bomb!");
+				bc.getUI().displayActionResult("🫴 ☣️", this, target, null, "but it was missed due to " + effectName+ "!");
 			}
 			else {
 				bc.getUI().displayActionResult("🫴 ☣️", this, target, null, "");
