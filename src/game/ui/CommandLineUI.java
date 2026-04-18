@@ -495,6 +495,7 @@ public class CommandLineUI implements UI {
 	// ========== STUNNED ==========
 
 	public void displayStunned(Combatant c) {
+		System.out.println();
 		displayCombatantAndStatusEffects(c);
 		System.out.println("  is stunned 😵💫  →  turn skipped!" + RESET);
 		sleep(300);
