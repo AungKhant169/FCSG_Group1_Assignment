@@ -75,7 +75,7 @@ public class BattleEngine {
 			return;
 		boolean turnSkip = false;
 		for (StatusEffect effect : c.getStatusEffects()) {
-			effect.inflictDamage(c, ui, effect.getEffectEmoji());
+			effect.inflictDamage(c, ui);
 			if (!c.isAlive()) {
 				return;
 			}

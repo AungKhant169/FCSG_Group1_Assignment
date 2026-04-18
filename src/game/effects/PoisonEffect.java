@@ -7,14 +7,6 @@ public class PoisonEffect extends DamageOverTimeEffect {
         super(name, duration, dotDamage);
     }
 
-   @Override
-   public void inflictDamage(Combatant c, UI ui, String emoji) {
-		String statusDamageMessage = "HP⬇️: " + c.getCurrentHp() + " → ";
-		c.takeDamage(this.dotDamage);
-		statusDamageMessage = statusDamageMessage + c.getCurrentHp();
-        ui.displayActionResult("takes " + emoji , c, null, this.dotDamage , statusDamageMessage);
-    }
-
     @Override
     public String getEffectEmoji() {
         return "☣️ "; 

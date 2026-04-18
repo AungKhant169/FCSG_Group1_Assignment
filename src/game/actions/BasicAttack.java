@@ -2,6 +2,10 @@ package game.actions;
 
 import static java.lang.Math.max;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import game.effects.StatusEffect;
 import game.entities.Combatant;
 import game.ui.UI;
@@ -14,9 +18,12 @@ public class BasicAttack extends SingleTargetAction {
 		int targetDef = target.getTotalDef();
 		int damage = max(0, attackerAtk - targetDef);
 		boolean dmgBlocked = false;
-
+		List<String> se = new ArrayList<String>();
 		for (StatusEffect effect : target.getStatusEffects()) {
 			dmgBlocked = effect.blockInDamage();
+			if (dmgBlocked) {
+				se.add(effect.getName());
+			}
 			damage = effect.interactWithInDamage(damage);
 		}
 
@@ -25,7 +32,8 @@ public class BasicAttack extends SingleTargetAction {
 		target.takeDamage(damage);
 		display = display + target.getCurrentHp() + " ";
 		if (dmgBlocked) {
-			display = "HP🔒: " + target.getCurrentHp();
+			display = "HP🔒: " + target.getCurrentHp() + " (";
+			display = display + se.stream().collect(Collectors.joining(", ")) + ")";
 		}
 		ui.displayActionResult("🤜💥", attacker, target, damage, display);
 

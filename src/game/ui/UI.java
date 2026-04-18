@@ -1,4 +1,5 @@
 package game.ui;
+
 import java.util.List;
 
 import game.entities.Combatant;
@@ -32,13 +33,11 @@ public interface UI {
 
 	public void displaySelectedAction(int action);
 
-
-public void displayActionResult(String message, Combatant a, Combatant t, Integer dmg, String hpChange);
+	public void displayActionResult(String message, Combatant a, Combatant t, Integer dmg, String hpChange);
 
 	public void displayRoundSummary(List<Combatant> combatants);
 
 	public void displayLevelSummary(List<Combatant> combatants, int totalRound);
-
 
 	public void displayBackupSpawn();
 
@@ -57,7 +56,7 @@ public void displayActionResult(String message, Combatant a, Combatant t, Intege
 	public String askToTryAgain();
 
 	public void displayEndGame();
-	
+
 	public int getTargetEnemy(List<Enemy> enemies);
 
 	public int getWaveSize(String wave);
