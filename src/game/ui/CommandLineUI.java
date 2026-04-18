@@ -385,7 +385,7 @@ public class CommandLineUI implements UI {
 
 	// ========== ACTION RESULT ==========
 
-	public void displayActionResult	(String action, Combatant attacker, Combatant target, Integer damage, String hpChange) {
+	public void displayActionResult	(String action, Combatant attacker, Combatant target, Integer damage, String additional_msg) {
 		sleep(200);	
 
 		System.out.println();
@@ -403,16 +403,15 @@ public class CommandLineUI implements UI {
 			displayCombatantAndStatusEffects(target);
 		}
 
-		if (!hpChange.equals("")) { // When there is hp change
+		if (!additional_msg.equals("")) { // When there is hp change
 			System.out.print(" | ");
-			System.out.print(hpChange);
+			System.out.print(additional_msg);
 		}
 		
 		if (damage != null && damage > 0 && target != null) { // When there is damage
 			System.out.print(" ("+ attacker.getBaseAttack() +"⚔️  - " + target.getBaseDefense() + "🛡️  = " + damage + "⚔️ )");
 		}
 		
-		System.out.println();
 		System.out.println();
 		sleep(300);
 	}
@@ -454,31 +453,6 @@ public class CommandLineUI implements UI {
 		System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
 		sleep(500);
 	}
-
-// 	//to display the hp bars 
-// 	public void displayCombatHpUpdate(Combatant attacker, List<Combatant> targets) {
-//     sleep(150);
-//     System.out.println(CYAN + "  ├──────────────────────────────────────────────┤" + RESET);
-    
-//     // show attacker HP with ATTACKER label
-//     String attackerBar = hpBar(attacker.getCurrentHp(), attacker.getMaxHp());
-//     System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", attacker.getName()) + RESET
-//             + RED + " [ATTACKER] " + RESET
-//             + attackerBar + " " + GREEN + attacker.getCurrentHp() + "/" + attacker.getMaxHp() + "HP" + RESET);
-    
-//     // show all targets HP with TARGET label
-//     for (Combatant t : targets) {
-//         String bar = hpBar(t.getCurrentHp(), t.getMaxHp());
-//         System.out.println(CYAN + "  │ " + RESET + BOLD + String.format("%-12s", t.getName()) + RESET
-//                 + YELLOW + " [TARGET]   " + RESET
-//                 + bar + " " + GREEN + t.getCurrentHp() + "/" + t.getMaxHp() + "HP" + RESET);
-//     }
-    
-//     System.out.println(CYAN + "  └──────────────────────────────────────────────┘" + RESET);
-//     sleep(300);
-// }
-
-
 
 	// ========== LEVEL SUMMARY ==========	
 

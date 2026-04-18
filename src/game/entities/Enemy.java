@@ -6,6 +6,7 @@ import game.core.BattleContext;
 import game.effects.DamageOverTimeEffect;
 import game.effects.PoisonEffect;
 import game.effects.StatusEffect;
+import game.effects.SmokeBombInvulnerability;;
 
 public abstract class Enemy extends Combatant {
 
@@ -36,7 +37,7 @@ public abstract class Enemy extends Combatant {
 			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
 			boolean skip_invulnerability = false;
-			for (StatusEffect effect : ArrayList<StatusEffect>){
+			for (StatusEffect effect : target.getStatusEffects()){
 				if (effect instanceof SmokeBombInvulnerability){
 					skip_invulnerability = true;
 					break;

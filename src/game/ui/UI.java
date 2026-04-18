@@ -33,7 +33,7 @@ public interface UI {
 
 	public void displaySelectedAction(int action);
 
-	public void displayActionResult(String message, Combatant a, Combatant t, Integer dmg, String hpChange);
+	public void displayActionResult(String message, Combatant a, Combatant t, Integer dmg, String additional_msg);
 
 	public void displayRoundSummary(List<Combatant> combatants);
 
