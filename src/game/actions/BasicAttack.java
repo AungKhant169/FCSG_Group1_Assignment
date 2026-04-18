@@ -31,7 +31,7 @@ public class BasicAttack extends SingleTargetAction {
 		damage = max(0, damage);
 		target.takeDamage(damage);
 		display = display + target.getCurrentHp() + " ";
-		if (dmgBlocked) {
+		if (damage == 0) {
 			display = "HP🔒: " + target.getCurrentHp() + " (";
 			display = display + se.stream().collect(Collectors.joining(", ")) + ")";
 		}
