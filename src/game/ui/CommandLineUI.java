@@ -413,9 +413,10 @@ public class CommandLineUI implements UI {
 		}
 		
 		if (damage != null && damage > 0) { // When there is damage
-			System.out.println("(-" + damage + ")");
+			System.out.print("(-" + damage + ")");
 		}
 		
+		System.out.println();
 		System.out.println();
 		sleep(300);
 	}
