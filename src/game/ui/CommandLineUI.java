@@ -367,7 +367,7 @@ public class CommandLineUI implements UI {
 			System.out.println(PURPLE + "  │ " + RESET + GREEN + "3. 🎒 Use Item" + RESET + "                      "
 					+ PURPLE + "│" + RESET);
 		} else {
-			System.out.println(PURPLE + "  │ " + RESET + RED + "3. 🎒 Use Item (EMPTY)" + RESET + "                "
+			System.out.println(PURPLE + "  │ " + RESET + RED + "3. 🎒 Use Item (EMPTY)" + RESET + "              "
 					+ PURPLE + "│" + RESET);
 		}
 
@@ -383,14 +383,10 @@ public class CommandLineUI implements UI {
 		System.out.print(BOLD + "  Your move (1-4): " + RESET);
 	}
 
-	// public int getPlayerAction() {
-	// return scanner.nextInt();
-	// }
-
 	// ========== ACTION RESULT ==========
 
 	public void displayActionResult(String action, Combatant attacker, Combatant target, Integer damage, String hpChange) {
-		sleep(200);
+		sleep(200);	
 
 		System.out.println();
 		if (attacker != null) { // When there is an attacker
@@ -412,8 +408,8 @@ public class CommandLineUI implements UI {
 			System.out.print(hpChange);
 		}
 		
-		if (damage != null && damage > 0) { // When there is damage
-			System.out.print("(-" + damage + ")");
+		if (damage != null && damage > 0 && target != null) { // When there is damage
+			System.out.print(" ("+ attacker.getBaseAttack() +"⚔️  - " + target.getBaseDefense() + "🛡️  = " + damage + "⚔️ )");
 		}
 		
 		System.out.println();
@@ -431,7 +427,7 @@ public class CommandLineUI implements UI {
 			for (StatusEffect effect : c.getStatusEffects()) {
 				int roundsLeft = effect.getDuration();  // rounds remaining
 				if (roundsLeft < 0) {System.out.print("∞" + effect.getEffectEmoji());}
-				else {System.out.print(" " + roundsLeft + " " + effect.getEffectEmoji() + " ");}
+				else {System.out.print(" " + roundsLeft + effect.getEffectEmoji() + " ");}
 			}
 		}
 		System.out.print("]");
