@@ -409,7 +409,7 @@ public class CommandLineUI implements UI {
 		}
 		
 		if (damage != null && damage > 0 && target != null) { // When there is damage
-			System.out.print(" ("+ attacker.getBaseAttack() +"⚔️  - " + target.getTotalDef() + "🛡️  = " + damage + "⚔️ )");
+			System.out.print(" ("+ attacker.getTotalAttack() +"⚔️  - " + target.getTotalDef() + "🛡️  = " + damage + "⚔️ )");
 		}
 		
 		System.out.println();
