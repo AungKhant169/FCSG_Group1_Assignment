@@ -385,7 +385,7 @@ public class CommandLineUI implements UI {
 
 	// ========== ACTION RESULT ==========
 
-	public void displayActionResult(String action, Combatant attacker, Combatant target, Integer damage, String hpChange) {
+	public void displayActionResult	(String action, Combatant attacker, Combatant target, Integer damage, String hpChange) {
 		sleep(200);	
 
 		System.out.println();
