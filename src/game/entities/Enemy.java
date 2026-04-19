@@ -4,6 +4,9 @@ import java.util.Random;
 import game.actions.BasicAttack;
 import game.core.BattleContext;
 import game.effects.DamageOverTimeEffect;
+import game.effects.PoisonEffect;
+import game.effects.StatusEffect;
+import game.effects.SmokeBombInvulnerability;;
 
 public abstract class Enemy extends Combatant {
 
@@ -33,8 +36,22 @@ public abstract class Enemy extends Combatant {
 		if (randNum != 0) {
 			new BasicAttack().execute(this, target, bc.getUI());
 		} else {
-	    	bc.getUI().displayActionResult("Poison -> " + target.getName(), this, null, "", "");
-	    	target.addStatusEffect(new DamageOverTimeEffect("Poison", 3, 10));
+			boolean skip_invulnerability = false;
+			String effectName = "";
+			for (StatusEffect effect : target.getStatusEffects()){
+				if (effect.blockInDamage()){
+					effectName = effect.getName();
+					skip_invulnerability = true;
+					break;
+				}
+			}
+	    	if (skip_invulnerability) {
+				bc.getUI().displayActionResult("🫴 ☣️", this, target, null, "but it was missed due to " + effectName+ "!");
+			}
+			else {
+				bc.getUI().displayActionResult("🫴 ☣️", this, target, null, "");
+				target.addStatusEffect(new PoisonEffect("Poison", 3, 10));
+			}
 		}
 	}
 	

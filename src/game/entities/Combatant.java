@@ -159,6 +159,8 @@ public abstract class Combatant {
 	}
 	
 	public abstract void specialSkill(BattleContext bc, boolean cdReset);
+
+	public abstract String getEntityEmoji();
 	
 	public void reduceSpecialSkillCooldown() { 
 		this.currentCooldown = (this.currentCooldown > 0) ? this.currentCooldown - 1: 0;

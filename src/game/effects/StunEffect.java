@@ -9,4 +9,9 @@ public class StunEffect extends Debuff {
     public boolean stopTurn() {
     	return true;
     }
+
+    @Override
+    public String getEffectEmoji() {
+        return "💫"; 
+    }
 }

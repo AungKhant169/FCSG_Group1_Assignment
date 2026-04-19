@@ -10,4 +10,9 @@ public class Goblin extends Enemy {
 	public void specialSkill(BattleContext bc, boolean cd) {
 		
 	}
+
+	@Override
+	public String getEntityEmoji() {
+		return "🧌 "; 
+	}
 }

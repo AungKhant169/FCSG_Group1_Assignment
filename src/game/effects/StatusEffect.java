@@ -56,6 +56,10 @@ public class StatusEffect {
 		return damage;
 	};
 	
-	public void inflectDamage(Combatant c, UI ui) {
+	public void inflictDamage(Combatant c, UI ui) {
+	}
+
+	public String getEffectEmoji() {
+		return ""; // Override in subclasses to provide specific emoji
 	}
 }

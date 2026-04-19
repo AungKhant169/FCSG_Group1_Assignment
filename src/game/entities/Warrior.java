@@ -17,4 +17,9 @@ public class Warrior extends Player {
 			this.setCurrentCooldown(this.getSpecialSkillCooldown());
 		}
 	}
+
+	@Override
+	public String getEntityEmoji() {
+		return "🤺"; 
+	}
 }
